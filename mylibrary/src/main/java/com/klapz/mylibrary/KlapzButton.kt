@@ -37,7 +37,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     lateinit var login  :LinearLayout
     lateinit var thncyou  :LinearLayout
     lateinit var plain_text_input : EditText
-    lateinit var klapzimnage: ImageView
+    var klapzimnage: ImageView? = null
               var titlecontect :TextView
               var klapcounte :EditText
               var expression:EditText
@@ -136,7 +136,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             }
         }
         if (klapzimnage != null) {
-            klapzimnage.setOnClickListener {
+            klapzimnage!!.setOnClickListener {
                 ShowKlap()
             }
         }
