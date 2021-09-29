@@ -61,18 +61,19 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         bottomSheetDialog = BottomSheetDialog(context)
         bottomSheetDialog.setContentView(R.layout.bottomsheet)
         val pref = context.getSharedPreferences("MyPref", 0)
+        try{
+            klapzimnage =  findViewById(R.id.klapz)
+        }catch (e:NullPointerException){
 
-         klapzimnage =  findViewById(R.id.klapz)
+        }
+
          klapznext = bottomSheetDialog.findViewById<TextView>(R.id.klapznext)!!
          klapzlogin = bottomSheetDialog.findViewById<TextView>(R.id.klapzlogin)!!
+        try{
+            klapzmain = bottomSheetDialog.findViewById<TextView>(com.klapz.mylibrary.R.id.klapz)!!
+        }catch (e:NullPointerException){
 
-            try{
-                klapzmain = bottomSheetDialog.findViewById<TextView>(R.id.klapz)!!
-            }catch (e:NullPointerException){
-
-            }
-
-
+        }
          user_detail_layout = bottomSheetDialog.findViewById<LinearLayout>(R.id.user_detail_layout)!!
          otpfinal = bottomSheetDialog.findViewById<LinearLayout>(R.id.otpfinal)!!
          login = bottomSheetDialog.findViewById<LinearLayout>(R.id.login)!!
@@ -127,14 +128,17 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
             }
         })
+
         if (klapzlogin != null) {
             klapzmain!!.setOnClickListener {
                 KlapzGive()
 
             }
         }
-        klapzimnage.setOnClickListener {
-            ShowKlap()
+        if (klapzimnage != null) {
+            klapzimnage.setOnClickListener {
+                ShowKlap()
+            }
         }
 
         if(pref.getString("token", "test")!="test"){
