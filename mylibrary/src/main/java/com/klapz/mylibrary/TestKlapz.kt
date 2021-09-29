@@ -23,8 +23,7 @@ class TestKlapz : AppCompatActivity() {
         obj.put("createrID", "createrID")
         obj.put("Url", "https://stackoverflow.com/questions/40573380/textview-not-updating")
         //Direct //Default
-        obj.put("Mode", "Direct")
-
+        obj.put("Mode", "Defolat")
 
         //SendBox /Production
         kalpz.Start("XXXXXXXX",this,"SendBox")
