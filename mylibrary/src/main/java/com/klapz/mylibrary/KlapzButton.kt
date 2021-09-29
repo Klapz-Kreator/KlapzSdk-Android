@@ -65,7 +65,14 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
          klapzimnage =  findViewById(R.id.klapz)
          klapznext = bottomSheetDialog.findViewById<TextView>(R.id.klapznext)!!
          klapzlogin = bottomSheetDialog.findViewById<TextView>(R.id.klapzlogin)!!
-         klapzmain = bottomSheetDialog.findViewById<TextView>(R.id.klapz)!!
+
+            try{
+                klapzmain = bottomSheetDialog.findViewById<TextView>(R.id.klapz)!!
+            }catch (e:NullPointerException){
+
+            }
+
+
          user_detail_layout = bottomSheetDialog.findViewById<LinearLayout>(R.id.user_detail_layout)!!
          otpfinal = bottomSheetDialog.findViewById<LinearLayout>(R.id.otpfinal)!!
          login = bottomSheetDialog.findViewById<LinearLayout>(R.id.login)!!
@@ -120,12 +127,12 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
             }
         })
+        if (klapzlogin != null) {
+            klapzmain!!.setOnClickListener {
+                KlapzGive()
 
-        klapzmain!!.setOnClickListener {
-            KlapzGive()
-
+            }
         }
-
         klapzimnage.setOnClickListener {
             ShowKlap()
         }

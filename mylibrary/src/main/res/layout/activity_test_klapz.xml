@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".TestKlapz">
 
-    <com.klapz.mylibrary.KlapzButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:clickable="true"
-        tools:ignore="MissingConstraints">
+<!--    <com.klapz.mylibrary.KlapzButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:clickable="true"-->
+<!--        tools:ignore="MissingConstraints">-->
 
-    </com.klapz.mylibrary.KlapzButton>
+<!--    </com.klapz.mylibrary.KlapzButton>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
