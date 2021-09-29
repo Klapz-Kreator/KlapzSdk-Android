@@ -1,7 +1,11 @@
 package com.klapz.mylibrary
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
@@ -10,19 +14,20 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.*
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.klapz.mylibrary.api.Urls
+import com.klapz.sdk.api.KlapzConfig
 import com.lamudi.phonefield.PhoneInputLayout
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
 import java.util.*
-import kotlin.math.log
 
 
 class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
@@ -37,10 +42,12 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     lateinit var login  :LinearLayout
     lateinit var thncyou  :LinearLayout
     lateinit var plain_text_input : EditText
-    var klapzimnage: ImageView? = null
+     var klapzimnage: ImageView? = null
               var titlecontect :TextView
               var klapcounte :EditText
               var expression:EditText
+              var klapzDownload:TextView
+              var klapzDownloaderror:TextView
     var token = ""
     var title = ""
     var klapz = 0;
@@ -63,7 +70,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         val pref = context.getSharedPreferences("MyPref", 0)
         try{
             klapzimnage =  findViewById(R.id.klapz)
-        }catch (e:NullPointerException){
+        }catch (e: NullPointerException){
 
         }
 
@@ -71,7 +78,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
          klapzlogin = bottomSheetDialog.findViewById<TextView>(R.id.klapzlogin)!!
         try{
             klapzmain = bottomSheetDialog.findViewById<TextView>(com.klapz.mylibrary.R.id.klapz)!!
-        }catch (e:NullPointerException){
+        }catch (e: NullPointerException){
 
         }
          user_detail_layout = bottomSheetDialog.findViewById<LinearLayout>(R.id.user_detail_layout)!!
@@ -83,13 +90,30 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
          titlecontect  = bottomSheetDialog.findViewById<EditText>(R.id.title)!!
          klapcounte = bottomSheetDialog.findViewById<EditText>(R.id.klapcount)!!
          expression = bottomSheetDialog.findViewById<EditText>(R.id.exprestion)!!
-
+         klapzDownload = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownload)!!
+        klapzDownloaderror = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownloaderror)!!
 //        Phoneedit.ont
-
         Phoneedit!!.setHint(R.string.phone)
         Phoneedit!!.setDefaultCountry("IN")
 
 
+
+        klapzDownload.setOnClickListener {
+            val isAppInstalled = appInstalledOrNot("com.klapz.customer")
+
+            if (isAppInstalled) {
+                //This intent will help you to launch if the package is already installed
+                val LaunchIntent: Intent? = context.getPackageManager()
+                        .getLaunchIntentForPackage("com.klapz.customer")
+                context.startActivity(LaunchIntent)
+            } else {
+                try {
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.klapz.customer")))
+                } catch (e: ActivityNotFoundException) {
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.klapz.customer")))
+                }
+            }
+        }
 
         if (klapznext != null) {
             klapznext.setOnClickListener {
@@ -167,6 +191,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 thncyou.visibility =View.GONE
                 user_detail_layout!!.visibility = View.GONE
             }
+            klapzDownload.visibility =View.GONE
+            klapzDownloaderror.visibility =View.GONE
             var DataForKlapz = JSONObject(pref.getString("KlapConfig", "{}"))
             title = DataForKlapz.getString("title")
             titlecontect.setText(title)
@@ -219,8 +245,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         val objinner = JSONObject()
         objinner.put("mobile", stringphone)
         obj.put("user", objinner)
-        Log.e("login",obj.toString())
-        Log.e("url",apiurl + "auth/request_mobile_otp?apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber)
+        Log.e("login", obj.toString())
+        Log.e("url", apiurl + "auth/request_mobile_otp?apiKey="+key+"&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber)
         val jsObjRequest =
             object : JsonObjectRequest(
                     Request.Method.POST,
@@ -267,7 +293,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
         Log.e("numbert", obj.toString())
         Log.e(
-                "numbert", apiurl + "auth/verify_mobile_otp.json?apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber
+                "numbert", apiurl + "auth/verify_mobile_otp.json?apiKey="+key+"&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber
         )
         val jsObjRequest =
             object : JsonObjectRequest(
@@ -282,10 +308,10 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                             editor.putString("Klapztoken", token);
                             editor.apply()
                             editor.commit()
-                            if(Mode == "Direct"){
-                                 KlapzGive()
-                                 bottomSheetDialog.dismiss()
-                            }else{
+                            if (Mode == "Direct") {
+                                KlapzGive()
+                                bottomSheetDialog.dismiss()
+                            } else {
                                 otpfinal!!.visibility = View.GONE
                                 user_detail_layout!!.visibility = View.VISIBLE
                             }
@@ -346,46 +372,57 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("expression", expression.text)
 
         obj.put("claps", objinner)
-        Log.e("url", apiurl + "claps/expend??apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber)
+        Log.e("url", apiurl + "claps/expend?apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber)
         Log.e("main", obj.toString())
         Log.e("main", token)
 
         val jsObjRequest =
                 object : JsonObjectRequest(
                         Request.Method.POST,
-                        apiurl + "claps/expend??apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber,
+                        apiurl + "claps/expend?apiKey="+key+"&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber,
                         obj,
                         Response.Listener<JSONObject?> { response ->
                             Log.e("responce", response.toString())
                             if (response != null) {
-                                    user_detail_layout!!.visibility = View.GONE
-                                    thncyou!!.visibility = View.VISIBLE
+                                user_detail_layout!!.visibility = View.GONE
+                                thncyou!!.visibility = View.VISIBLE
                             }
 
                         },
                         Response.ErrorListener { error ->
 //                            Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
 //                                    .show()
-
                             Log.e("error", error.toString())
                             val response = error.networkResponse
                             if (error is ServerError && response != null) {
                                 try {
-                                    val res =  String(
+                                    val res = String(
                                             response?.data ?: ByteArray(0),
                                             Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
                                     // Now you can use any deserializer to make sense of data
                                     val obj = JSONObject(res)
                                     Log.e("error", obj.toString())
-                                    Toast.makeText(context, obj.getJSONObject("errors").getString("errorMessage"), Toast.LENGTH_LONG)
-                                            .show()
+
+                                    if (obj.getString("errorCode") == "Z1000") {
+                                        klapzDownload.visibility = View.VISIBLE
+                                        klapzDownloaderror.visibility = View.VISIBLE
+                                        klapzDownloaderror.setText(obj.getString("errorMessage"))
+                                    }else{
+                                        Toast.makeText(context, obj.getString("errorMessage"), Toast.LENGTH_LONG)
+                                                .show()
+                                    }
+                                    if (obj.getString("errorCode") == "Z1001") {
+                                        var kalpzc = KlapzConfig();
+                                        kalpzc.Close(context)
+                                        bottomSheetDialog.dismiss()
+                                    }
                                 } catch (e1: UnsupportedEncodingException) {
                                     // Couldn't properly decode data to string
                                     e1.printStackTrace()
                                 } catch (e2: JSONException) {
                                     // returned data is not JSONObject?
                                     e2.printStackTrace()
-                                }catch (e2: java.lang.Exception) {
+                                } catch (e2: java.lang.Exception) {
                                     // returned data is not JSONObject?
                                     e2.printStackTrace()
                                 }
@@ -400,5 +437,15 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         requestQueue.add(jsObjRequest)
+    }
+
+    private fun appInstalledOrNot(uri: String): Boolean {
+        val pm: PackageManager = context.getPackageManager()
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES)
+            return true
+        } catch (e: PackageManager.NameNotFoundException) {
+        }
+        return false
     }
 }

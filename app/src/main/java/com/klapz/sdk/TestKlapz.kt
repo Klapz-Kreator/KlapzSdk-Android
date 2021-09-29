@@ -21,9 +21,9 @@ class TestKlapz : AppCompatActivity() {
         obj.put("title", "Klapz this content")
         obj.put("klapz", 2)
         obj.put("createrID", "createrID")
-        obj.put("Url", "https://stackoverflow.com/questions/40573380/textview-not-updating")
+        obj.put("Url", "https://www.youtube.com/watch?v=LnNS_Gb4Mhk")
         //Direct //Default
-        obj.put("Mode", "Defolat")
+        obj.put("Mode", "Default")
 
         //SendBox /Production
         kalpz.Start("XXXXXXXX",this,"SendBox")
@@ -32,7 +32,7 @@ class TestKlapz : AppCompatActivity() {
 
 
         // If user Logout use this funtion
-        // kalpz.Close(this)
+//         kalpz.Close(this)
 
     }
 }

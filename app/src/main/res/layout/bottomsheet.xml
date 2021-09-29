@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="720dp"
+    android:layout_height="800dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -176,6 +176,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="2"
+                    android:gravity="center"
                     android:background="@drawable/editstyle2"
                     android:layout_height="50dp"
                     android:layout_width="50dp"
@@ -192,6 +193,30 @@
             android:background="@drawable/button"
             android:gravity="center"
             android:text="Give:- 2 Klapz"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/klapzDownloaderror"
+            android:layout_marginTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/klapxcolor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/klapzDownload"
+            android:layout_marginTop="20dp"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/button"
+            android:gravity="center"
+            android:text="Download Klapz and buy Klapz"
             android:textColor="@color/white"
             android:textSize="18sp" />
 
