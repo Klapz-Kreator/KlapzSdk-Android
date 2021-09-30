@@ -20,8 +20,8 @@ import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.klapz.mylibrary.api.KlapzConfig
 import com.klapz.mylibrary.api.Urls
-import com.klapz.sdk.api.KlapzConfig
 import com.lamudi.phonefield.PhoneInputLayout
 import org.json.JSONException
 import org.json.JSONObject
