@@ -106,15 +106,15 @@
 
 
     <LinearLayout
-            android:id="@+id/user_detail_layout"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="vertical">
+        android:id="@+id/user_detail_layout"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
@@ -137,10 +137,40 @@
             android:layout_height="100dp"
             android:layout_width="350dp"
             android:inputType="text"/>
+        <LinearLayout
+            android:id="@+id/reffres"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@drawable/logom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="X"
+                android:textColor="@color/black"
+                android:textSize="24dp" />
             <LinearLayout
-                android:id="@+id/reffres"
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
+                android:id="@+id/prefretreffres"
+                android:layout_width="wrap_content"
                 android:gravity="center"
                 android:visibility="visible"
                 android:layout_height="wrap_content"
@@ -148,41 +178,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal">
-                <ImageView
-                    android:src="@drawable/logom"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textColor="@color/black"
-                    android:textSize="24dp" />
-
-                <EditText
-                    android:id="@+id/klapcount"
-                    android:padding="10dp"
-                    android:textSize="24dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="2"
-                    android:gravity="center"
-                    android:background="@drawable/editstyle2"
-                    android:layout_height="50dp"
-                    android:layout_width="50dp"
-                    android:inputType="text"/>
-
             </LinearLayout>
+            <EditText
+                android:id="@+id/klapcount"
+                android:padding="10dp"
+                android:textSize="24dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="2"
+                android:gravity="center"
+                android:background="@drawable/editstyle2"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:inputType="text"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/klapz"
@@ -196,12 +205,36 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/errorpopup"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/titlemain"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:textSize="25dp"
+            android:textColor="@color/klapxcolor"
+            android:textFontWeight="@integer/material_motion_duration_long_1"
+            android:layout_height="wrap_content"
+            android:text="Title of shared content"
+            tools:ignore="MissingConstraints" />
+
         <TextView
             android:id="@+id/klapzDownloaderror"
             android:layout_marginTop="20dp"
             android:layout_width="350dp"
             android:layout_height="40dp"
-            android:visibility="gone"
             android:layout_weight="1"
             android:gravity="center"
             android:text=""
@@ -219,9 +252,7 @@
             android:text="Download Klapz and buy Klapz"
             android:textColor="@color/white"
             android:textSize="18sp" />
-
-     </LinearLayout>
-
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/thncyou"
@@ -234,16 +265,16 @@
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
 
-    <TextView
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_marginTop="230dp"
-        android:textSize="25dp"
-        android:textColor="@color/klapxcolor"
-        android:textFontWeight="@integer/material_motion_duration_long_1"
-        android:layout_height="wrap_content"
-        android:text="Thanks for Klapping."
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_marginTop="230dp"
+            android:textSize="25dp"
+            android:textColor="@color/klapxcolor"
+            android:textFontWeight="@integer/material_motion_duration_long_1"
+            android:layout_height="wrap_content"
+            android:text="Thanks for Klapping."
+            tools:ignore="MissingConstraints" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

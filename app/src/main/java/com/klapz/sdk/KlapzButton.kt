@@ -1,10 +1,12 @@
 package com.klapz.sdk
 
+import android.R.attr.button
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,7 +16,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat
 import com.android.volley.*
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
@@ -48,6 +50,9 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
               var expression:EditText
               var klapzDownload:TextView
               var klapzDownloaderror:TextView
+              lateinit var errorpopup :LinearLayout
+              lateinit var titlemain : TextView
+                lateinit var prefretreffres:LinearLayout
     var token = ""
     var title = ""
     var klapz = 0;
@@ -57,6 +62,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     var key = ""
     var apiurl = ""
     var Mode = ""
+    var preferKlapz = ""
     lateinit var bottomSheetDialog: BottomSheetDialog
     init {
         orientation = HORIZONTAL
@@ -92,6 +98,11 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
          expression = bottomSheetDialog.findViewById<EditText>(R.id.exprestion)!!
          klapzDownload = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownload)!!
         klapzDownloaderror = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownloaderror)!!
+
+        errorpopup = bottomSheetDialog.findViewById<LinearLayout>(R.id.errorpopup)!!
+        titlemain = bottomSheetDialog.findViewById<TextView>(R.id.titlemain)!!
+        prefretreffres = bottomSheetDialog.findViewById<LinearLayout>(R.id.prefretreffres)!!
+
 //        Phoneedit.ont
         Phoneedit!!.setHint(R.string.phone)
         Phoneedit!!.setDefaultCountry("IN")
@@ -175,7 +186,6 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
 
     fun ShowKlap(){
-
         try{
             val pref = context.getSharedPreferences("MyPref", 0)
             Log.e("okern", pref.getString("Klapztoken", "test").toString())
@@ -191,10 +201,10 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 thncyou.visibility =View.GONE
                 user_detail_layout!!.visibility = View.GONE
             }
-            klapzDownload.visibility =View.GONE
-            klapzDownloaderror.visibility =View.GONE
+            errorpopup.visibility =View.GONE
             var DataForKlapz = JSONObject(pref.getString("KlapConfig", "{}"))
             title = DataForKlapz.getString("title")
+            titlemain.setText(title)
             titlecontect.setText(title)
             klapz = DataForKlapz.getInt("klapz");
             klapcounte.setText(DataForKlapz.getInt("klapz").toString())
@@ -203,6 +213,35 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             key = pref.getString("Klapzkey", "xxx").toString()
             KlapEnvirment = pref.getString("KlapEnvirment", "SendBox").toString()
             Mode = DataForKlapz.getString("Mode")
+
+            var prefferarray = DataForKlapz.getString("PreferKlapz").split(",");
+
+            val btn = arrayOfNulls<Button>(3)
+            prefretreffres.removeAllViews()
+            for (i in 0..prefferarray.size) {
+                if(i<=2){
+                    btn[i] = Button(context)
+                    btn[i]!!.id = i
+                    btn[i]!!.text = prefferarray[i]
+                    val buttonLayoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+
+                    buttonLayoutParams.width = 150
+                    buttonLayoutParams.height = 150
+                    buttonLayoutParams.setMargins(5, 0, 5, 0)
+                    btn[i]!!.setLayoutParams(buttonLayoutParams)
+                    btn[i]!!.width = 25
+                    btn[i]!!.height = 50
+                    btn[i]!!.setTextColor(Color.parseColor("#FFFFFF"))
+                    btn[i]!!.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.button))
+                    prefretreffres.addView(btn[i])
+                    btn[i]!!.setOnClickListener {
+                        klapcounte.setText(prefferarray[i].toString())
+                        klapzmain.setText("Give:- " + prefferarray[i] + " Klapz")
+                        //your desired functionality
+                    }
+                }
+            }
+
             if(KlapEnvirment =="Production"){
                 apiurl = Urls.apiurlPROD
             }else{
@@ -246,7 +285,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("mobile", stringphone)
         obj.put("user", objinner)
         Log.e("login", obj.toString())
-        Log.e("url", apiurl + "auth/request_mobile_otp?apiKey="+key+"&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber)
+        Log.e("url", apiurl + "auth/request_mobile_otp?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber)
         val jsObjRequest =
             object : JsonObjectRequest(
                     Request.Method.POST,
@@ -293,7 +332,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
         Log.e("numbert", obj.toString())
         Log.e(
-                "numbert", apiurl + "auth/verify_mobile_otp.json?apiKey="+key+"&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber
+                "numbert", apiurl + "auth/verify_mobile_otp.json?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber
         )
         val jsObjRequest =
             object : JsonObjectRequest(
@@ -379,7 +418,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         val jsObjRequest =
                 object : JsonObjectRequest(
                         Request.Method.POST,
-                        apiurl + "claps/expend?apiKey="+key+"&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber,
+                        apiurl + "claps/expend?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&buildNumber=" + Urls.buildNumber,
                         obj,
                         Response.Listener<JSONObject?> { response ->
                             Log.e("responce", response.toString())
@@ -404,10 +443,16 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                                     Log.e("error", obj.toString())
 
                                     if (obj.getString("errorCode") == "Z1000") {
-                                        klapzDownload.visibility = View.VISIBLE
-                                        klapzDownloaderror.visibility = View.VISIBLE
+                                        user_detail_layout.visibility = View.GONE
+                                        errorpopup.visibility = View.VISIBLE
                                         klapzDownloaderror.setText(obj.getString("errorMessage"))
-                                    }else{
+
+                                        if (Mode == "Direct") {
+//                                            Toast.makeText(context, obj.getString("errorMessage"), Toast.LENGTH_LONG)
+//                                                    .show()
+                                            bottomSheetDialog.show()
+                                        }
+                                    } else {
                                         Toast.makeText(context, obj.getString("errorMessage"), Toast.LENGTH_LONG)
                                                 .show()
                                     }
