@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-
+    <color name="blackg">#C0C0C0</color>
+    <color name="lessWhite">#F0F0F0</color>
     <color name="klapxcolor">#ff7f57</color>
+    <color name="klapxcolorlight">#ff946d</color>
+
 </resources>

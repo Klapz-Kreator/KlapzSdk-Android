@@ -13,4 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="MyEditTextStyle" parent="@android:style/TextAppearance.Widget.EditText">
+        <item name="android:background">@drawable/button2</item>
+    </style>
+
 </resources>

@@ -3,16 +3,38 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:foregroundGravity="bottom"
     android:layout_height="match_parent"
     tools:context=".TestKlapz">
 
-<!--    <com.klapz.mylibrary.KlapzButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:clickable="true"-->
-<!--        tools:ignore="MissingConstraints">-->
+    <com.klapz.sdk.KlapzButton
+        android:src="@drawable/logom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
-<!--    </com.klapz.mylibrary.KlapzButton>-->
+    <TextView
+        android:id="@+id/logouts"
+        android:layout_marginTop="130dp"
+        android:layout_width="350dp"
+        android:layout_height="56dp"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:background="@drawable/button"
+        android:gravity="center"
+        android:text="Logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
