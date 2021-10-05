@@ -25,13 +25,17 @@ class TestKlapz : AppCompatActivity() {
         obj.put("createrID", "createrID")
         obj.put("Url", "https://www.youtube.com/watch?v=LnNS_Gb4Mhk")
         obj.put("expressionPlaceholder", "Tell us, what do you love about this book summary")
-        obj.put("PreferKlapz", "10,20,30")
+        obj.put("PreferKlapz", "")
 
         obj.put("ThankText", "Thanks for Klapping.")
         obj.put("ContentType", "summary")
 
         //Direct //Default
         obj.put("Mode", "Default")
+
+        var callBackPayload = JSONObject()
+        callBackPayload.put("userid","userID")
+        obj.put("callBackPayload", callBackPayload)
 
 
         kalpz.Config(obj,this)

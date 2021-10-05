@@ -13,8 +13,14 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-    <style name="MyEditTextStyle" parent="@android:style/TextAppearance.Widget.EditText">
-        <item name="android:background">@drawable/button2</item>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_up_dialog</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_down</item>
     </style>
+    <style name="DialogSlideAnim" parent="@android:style/Theme.Dialog">
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+    </style>
+
 
 </resources>

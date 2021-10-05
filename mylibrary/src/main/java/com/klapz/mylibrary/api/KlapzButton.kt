@@ -1,4 +1,4 @@
-package com.klapz.mylibrary
+package com.klapz.mylibrary.api
 
 import android.app.Activity
 import android.app.Dialog
@@ -28,8 +28,8 @@ import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.klapz.mylibrary.api.KlapzConfig
 import com.klapz.mylibrary.api.Urls
+import com.klapz.sdk.api.KlapzConfig
 import com.rilixtech.widget.countrycodepicker.CountryCodePicker
 import org.json.JSONException
 import org.json.JSONObject
@@ -40,7 +40,7 @@ import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
-        LinearLayout(context, attrs) {
+    LinearLayout(context, attrs) {
     lateinit var Phoneedit: EditText;
 
     lateinit var klapznext :TextView
@@ -52,16 +52,16 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     lateinit var thncyou  :LinearLayout
     lateinit var plain_text_input : EditText
     lateinit var ccp :CountryCodePicker
-    var klapzimnage: ImageView? = null
-    var titlecontect :TextView
-    var klapcounte :EditText
-    var expression:EditText
-    var klapzDownload:TextView
-    var klapzDownloadmain :TextView
-    var klapzDownloaderror:TextView
-    lateinit var errorpopup :LinearLayout
-    lateinit var titlemain : TextView
-    lateinit var prefretreffres:LinearLayout
+     var klapzimnage: ImageView? = null
+  var titlecontect :TextView
+  var klapcounte :EditText
+  var expression:EditText
+  var klapzDownload:TextView
+  var klapzDownloadmain :TextView
+  var klapzDownloaderror:TextView
+  lateinit var errorpopup :LinearLayout
+  lateinit var titlemain : TextView
+  lateinit var prefretreffres:LinearLayout
     lateinit var klapzDownload2:TextView
     lateinit var klapzDownloaderror2:TextView
     lateinit var errorpopup2 :LinearLayout
@@ -108,7 +108,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         orientation = HORIZONTAL
         gravity = Gravity.CENTER_VERTICAL
         val inflater = context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+            .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var contentView   = inflater.inflate(R.layout.activity_main, this, true)
 
 //        bottomSheetDialog = BottomSheetDialog(context)
@@ -147,16 +147,16 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         }catch (e: NullPointerException){
 
         }
-        user_detail_layout = bottomSheetDialog.findViewById<LinearLayout>(R.id.user_detail_layout)!!
-        otpfinal = bottomSheetDialog.findViewById<LinearLayout>(R.id.otpfinal)!!
-        login = bottomSheetDialog.findViewById<LinearLayout>(R.id.login)!!
-        thncyou = bottomSheetDialog.findViewById<LinearLayout>(R.id.thncyou)!!
-        Phoneedit = bottomSheetDialog.findViewById<EditText>(R.id.phoneinput)!!
-        plain_text_input = bottomSheetDialog.findViewById<EditText>(R.id.plain_text_input)!!
-        titlecontect  = bottomSheetDialog.findViewById<EditText>(R.id.title)!!
-        klapcounte = bottomSheetDialog.findViewById<EditText>(R.id.klapcount)!!
-        expression = bottomSheetDialog.findViewById<EditText>(R.id.exprestion)!!
-        klapzDownload = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownload)!!
+         user_detail_layout = bottomSheetDialog.findViewById<LinearLayout>(R.id.user_detail_layout)!!
+         otpfinal = bottomSheetDialog.findViewById<LinearLayout>(R.id.otpfinal)!!
+         login = bottomSheetDialog.findViewById<LinearLayout>(R.id.login)!!
+         thncyou = bottomSheetDialog.findViewById<LinearLayout>(R.id.thncyou)!!
+         Phoneedit = bottomSheetDialog.findViewById<EditText>(R.id.phoneinput)!!
+         plain_text_input = bottomSheetDialog.findViewById<EditText>(R.id.plain_text_input)!!
+         titlecontect  = bottomSheetDialog.findViewById<EditText>(R.id.title)!!
+         klapcounte = bottomSheetDialog.findViewById<EditText>(R.id.klapcount)!!
+         expression = bottomSheetDialog.findViewById<EditText>(R.id.exprestion)!!
+         klapzDownload = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownload)!!
         klapzDownloaderror = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownloaderror)!!
         ccp = bottomSheetDialog.findViewById<CountryCodePicker>(R.id.ccp)!!
         errorpopup = bottomSheetDialog.findViewById<LinearLayout>(R.id.errorpopup)!!
@@ -362,8 +362,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             try {
                 context.startActivity(whatsappIntent)
             } catch (ex: ActivityNotFoundException) {
-                Toast.makeText(context, "Whatsapp have not been installed.", Toast.LENGTH_LONG)
-                        .show()
+                    Toast.makeText(context, "Whatsapp have not been installed.", Toast.LENGTH_LONG)
+                .show()
             }
         }
 
@@ -537,30 +537,30 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         Log.e("login", obj.toString())
         Log.e("url", apiurl + "auth/request_mobile_otp?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
         val jsObjRequest =
-                object : JsonObjectRequest(
-                        Request.Method.POST,
-                        apiurl + "auth/request_mobile_otp?apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber,
-                        obj,
-                        Response.Listener<JSONObject?> { response ->
-                            Log.e("responce", response.toString())
-                            if (response != null) {
-                                login!!.visibility = View.GONE
-                                otpfinal!!.visibility = View.VISIBLE
-                            }
-
-                        },
-                        Response.ErrorListener { error ->
-                            Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
-                                    .show()
-                            Log.e("error", error.toString())
+            object : JsonObjectRequest(
+                    Request.Method.POST,
+                    apiurl + "auth/request_mobile_otp?apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber,
+                    obj,
+                    Response.Listener<JSONObject?> { response ->
+                        Log.e("responce", response.toString())
+                        if (response != null) {
+                            login!!.visibility = View.GONE
+                            otpfinal!!.visibility = View.VISIBLE
                         }
-                ) {
 
-                    override fun getHeaders(): Map<String, String> {
-                        val headers = HashMap<String, String>()
-                        return headers
+                    },
+                    Response.ErrorListener { error ->
+                        Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
+                                .show()
+                        Log.e("error", error.toString())
                     }
+            ) {
+
+                override fun getHeaders(): Map<String, String> {
+                    val headers = HashMap<String, String>()
+                    return headers
                 }
+            }
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         requestQueue.add(jsObjRequest)
     }
@@ -586,59 +586,59 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 "numbert", apiurl + "auth/verify_mobile_otp.json?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber
         )
         val jsObjRequest =
-                object : JsonObjectRequest(
-                        Request.Method.POST,
-                        apiurl + "auth/verify_mobile_otp.json?apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber,
-                        obj,
-                        Response.Listener<JSONObject?> { response ->
-                            Log.e("responce", response.toString())
-                            if (response != null) {
-                                val pref = context.getSharedPreferences("MyPref", 0)
-                                val editor: SharedPreferences.Editor = pref.edit()
-                                editor.putString("Klapztoken", token);
-                                editor.apply()
-                                editor.commit()
-                                if (Mode == "Direct") {
-                                    KlapzGive()
-                                    bottomSheetDialog.dismiss()
-                                } else {
-                                    otpfinal!!.visibility = View.GONE
-                                    user_detail_layout!!.visibility = View.VISIBLE
-                                }
-
+            object : JsonObjectRequest(
+                    Request.Method.POST,
+                    apiurl + "auth/verify_mobile_otp.json?apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber,
+                    obj,
+                    Response.Listener<JSONObject?> { response ->
+                        Log.e("responce", response.toString())
+                        if (response != null) {
+                            val pref = context.getSharedPreferences("MyPref", 0)
+                            val editor: SharedPreferences.Editor = pref.edit()
+                            editor.putString("Klapztoken", token);
+                            editor.apply()
+                            editor.commit()
+                            if (Mode == "Direct") {
+                                KlapzGive()
+                                bottomSheetDialog.dismiss()
+                            } else {
+                                otpfinal!!.visibility = View.GONE
+                                user_detail_layout!!.visibility = View.VISIBLE
                             }
 
-                        },
-                        Response.ErrorListener { error ->
-                            Toast.makeText(context, "Error in Verify Mobile otp", Toast.LENGTH_LONG)
-                                    .show()
-                            Log.e("error", error.toString())
                         }
-                ) {
-                    override fun getHeaders(): Map<String, String> {
-                        val headers = HashMap<String, String>()
-                        headers.put("Content-Type", "application/json")
-                        return headers
-                    }
-                    override fun parseNetworkResponse(response: NetworkResponse?): Response<JSONObject>? {
 
-                        try{
-                            token = response?.headers?.get("auth-token").toString()
-                            Log.e("token", token)
-                            val jsonString = String(
-                                    response?.data ?: ByteArray(0),
-                                    Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
-                            return Response.success(
-                                    JSONObject(jsonString),
-                                    HttpHeaderParser.parseCacheHeaders(response)
-                            )
-                        } catch (e: UnsupportedEncodingException) {
-                            return Response.error(ParseError(e));
-                        } catch (je: JSONException) {
-                            return Response.error(ParseError(je));
-                        }
+                    },
+                    Response.ErrorListener { error ->
+                        Toast.makeText(context, "Error in Verify Mobile otp", Toast.LENGTH_LONG)
+                                .show()
+                        Log.e("error", error.toString())
+                    }
+            ) {
+                override fun getHeaders(): Map<String, String> {
+                    val headers = HashMap<String, String>()
+                    headers.put("Content-Type", "application/json")
+                    return headers
+                }
+                override fun parseNetworkResponse(response: NetworkResponse?): Response<JSONObject>? {
+
+                    try{
+                        token = response?.headers?.get("auth-token").toString()
+                        Log.e("token", token)
+                        val jsonString = String(
+                                response?.data ?: ByteArray(0),
+                                Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
+                        return Response.success(
+                                JSONObject(jsonString),
+                                HttpHeaderParser.parseCacheHeaders(response)
+                        )
+                    } catch (e: UnsupportedEncodingException) {
+                        return Response.error(ParseError(e));
+                    } catch (je: JSONException) {
+                        return Response.error(ParseError(je));
                     }
                 }
+            }
         val requestQueue: RequestQueue = Volley.newRequestQueue(context)
         requestQueue.add(jsObjRequest)
     }

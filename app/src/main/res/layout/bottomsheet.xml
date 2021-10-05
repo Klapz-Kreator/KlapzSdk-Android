@@ -29,6 +29,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back"
+                android:src="@drawable/arrow"
+                android:layout_width="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal">
+
             <ImageView
                 android:src="@drawable/logom"
                 android:layout_width="wrap_content"
@@ -38,6 +62,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
+
             <TextView
                 android:textAlignment="center"
                 android:layout_width="320dp"
@@ -49,6 +74,8 @@
                 android:layout_height="wrap_content"
                 android:text="Affordable Content Rewarding"
                 tools:ignore="MissingConstraints" />
+
+            </LinearLayout>
         </LinearLayout>
         <TextView
             android:textAlignment="center"
@@ -149,6 +176,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back1"
+                android:src="@drawable/arrow"
+                android:layout_width="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal">
             <ImageView
                 android:src="@drawable/logom"
                 android:layout_width="wrap_content"
@@ -169,6 +218,8 @@
                 android:layout_height="wrap_content"
                 android:text="Affordable Content Rewarding"
                 tools:ignore="MissingConstraints" />
+            </LinearLayout>
+
         </LinearLayout>
         <TextView
             android:textAlignment="center"
@@ -295,7 +346,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal">
-
+            <ImageView
+                android:id="@+id/back2"
+                android:src="@drawable/arrow"
+                android:layout_width="25dp"
+                android:onClick="close"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal">
             <ImageView
                 android:src="@drawable/logom"
                 android:layout_width="25dp"
@@ -317,6 +389,8 @@
                 android:layout_height="wrap_content"
                 android:text="Affordable Content Rewarding"
                 tools:ignore="MissingConstraints" />
+            </LinearLayout>
+
         </LinearLayout>
         <TextView
             android:id="@+id/title"
@@ -493,6 +567,28 @@
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal">
 
+        <ImageView
+                android:id="@+id/back3"
+                android:src="@drawable/arrow"
+                android:layout_width="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal">
+
             <ImageView
                 android:src="@drawable/logom"
                 android:layout_width="25dp"
@@ -514,6 +610,7 @@
                 android:layout_height="wrap_content"
                 android:text="Affordable Content Rewarding"
                 tools:ignore="MissingConstraints" />
+            </LinearLayout>
         </LinearLayout>
         <TextView
             android:id="@+id/titlemain"
@@ -555,9 +652,267 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/startMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/header2"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="12dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/back4"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/arrow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/logom"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserratbold"
+                    android:text="Affordable Content Rewarding"
+                    android:textAlignment="center"
+                    android:textColor="@color/klapxcolor"
+                    android:textFontWeight="@integer/material_motion_duration_long_2"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    tools:ignore="MissingConstraints" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="120dp"
+            android:src="@drawable/imagewhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/montserratregular"
+            android:text="Micro rewarding free content on the internet. "
+            android:textColor="@color/pf_grey"
+            android:textFontWeight="@integer/material_motion_duration_long_2"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/two"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:lineHeight="20dp"
+                android:text="Give as little as ₹2 when you like a content."
+                android:textColor="@color/black"
+                android:textFontWeight="@integer/material_motion_duration_long_2"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/notificationklapz"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:text="Get notified when your friends Klap."
+                android:textColor="@color/black"
+                android:textFontWeight="@integer/material_motion_duration_long_2"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/taermandcondition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:text="* "
+                android:textColor="@color/black"
+                android:textFontWeight="@integer/material_motion_duration_long_2"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:text="Terms &amp; Conditions"
+                android:textColor="@color/klapxcolor"
+                android:textFontWeight="@integer/material_motion_duration_long_2"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserratregular"
+                android:text=" apply "
+                android:textColor="@color/black"
+                android:textFontWeight="@integer/material_motion_duration_long_2"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/camcestart"
+                android:layout_width="172dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/editstyle"
+                android:fontFamily="@font/montserratmedium"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="@color/klapxcolor"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/gotologin"
+                android:layout_width="172dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:background="@drawable/buttonklap"
+                android:fontFamily="@font/montserratmedium"
+                android:gravity="center"
+                android:text="Proceed"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/thncyou"
         android:layout_width="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         android:background="@color/white"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -578,6 +933,27 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/back5"
+                android:src="@drawable/arrow"
+                android:layout_width="25dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:visibility="visible"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal">
+            <ImageView
                 android:src="@drawable/logom"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
@@ -588,6 +964,7 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
+
                 android:textAlignment="center"
                 android:layout_width="320dp"
                 android:textSize="18dp"
@@ -598,6 +975,7 @@
                 android:layout_height="wrap_content"
                 android:text="Affordable Content Rewarding"
                 tools:ignore="MissingConstraints" />
+            </LinearLayout>
         </LinearLayout>
 
     <TextView
@@ -655,7 +1033,18 @@
         />
 
     </LinearLayout>
-
+        <TextView
+            android:id="@+id/klapzDownloadmain"
+            android:layout_marginTop="40dp"
+            android:layout_width="330dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserratbold"
+            android:background="@drawable/buttonklap"
+            android:gravity="center"
+            android:text="Download Klapz"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

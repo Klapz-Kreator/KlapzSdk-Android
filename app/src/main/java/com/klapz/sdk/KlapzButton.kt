@@ -1,11 +1,14 @@
 package com.klapz.sdk
 
+import android.app.Activity
+import android.app.Dialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.Point
 import android.net.Uri
 import android.os.Build
 import android.text.Editable
@@ -15,6 +18,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
@@ -49,29 +53,41 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     lateinit var plain_text_input : EditText
     lateinit var ccp :CountryCodePicker
      var klapzimnage: ImageView? = null
-              var titlecontect :TextView
-              var klapcounte :EditText
-              var expression:EditText
-              var klapzDownload:TextView
-              var klapzDownloaderror:TextView
-              lateinit var errorpopup :LinearLayout
-              lateinit var titlemain : TextView
-                lateinit var prefretreffres:LinearLayout
+  var titlecontect :TextView
+  var klapcounte :EditText
+  var expression:EditText
+  var klapzDownload:TextView
+  var klapzDownloadmain :TextView
+  var klapzDownloaderror:TextView
+  lateinit var errorpopup :LinearLayout
+  lateinit var titlemain : TextView
+  lateinit var prefretreffres:LinearLayout
     lateinit var klapzDownload2:TextView
     lateinit var klapzDownloaderror2:TextView
-            lateinit var errorpopup2 :LinearLayout
+    lateinit var errorpopup2 :LinearLayout
     lateinit var resendotp :TextView
     lateinit var errorphone:TextView
     lateinit var errorotp:TextView
     lateinit var thanxtext:TextView
-
-
+    lateinit var mainviwe :FrameLayout
     lateinit var wp:ImageView
     lateinit var fb:ImageView
     lateinit var tw:ImageView
     lateinit var share:ImageView
 
 
+    lateinit var startMain:LinearLayout
+    lateinit var taermandcondition:LinearLayout
+    lateinit var camcestart:TextView
+    lateinit var gotologin:TextView
+
+
+    lateinit var back:ImageView
+    lateinit var back1:ImageView
+    lateinit var back2:ImageView
+    lateinit var back3:ImageView
+    lateinit var back4:ImageView
+    lateinit var back5:ImageView
 
     var token = ""
     var title = ""
@@ -85,8 +101,9 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     var preferKlapz = ""
     var ContentType = "content"
     var shareResponse = JSONObject()
-
-    lateinit var bottomSheetDialog: BottomSheetDialog
+    var sizem:Point;
+    lateinit var bottomSheetDialog: Dialog
+    var callBackPayload = JSONObject("{}")
     init {
         orientation = HORIZONTAL
         gravity = Gravity.CENTER_VERTICAL
@@ -94,22 +111,37 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var contentView   = inflater.inflate(R.layout.activity_main, this, true)
 
-        bottomSheetDialog = BottomSheetDialog(context)
+//        bottomSheetDialog = BottomSheetDialog(context)
+//        bottomSheetDialog.setContentView(R.layout.bottomsheet)
+
+        bottomSheetDialog= Dialog(context, R.style.Theme_MyApplication)
+        bottomSheetDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         bottomSheetDialog.setContentView(R.layout.bottomsheet)
+//        dialog.show()
 
+        (context as Activity).windowManager.defaultDisplay
 
-
-
-
+        sizem = Point()
         val pref = context.getSharedPreferences("MyPref", 0)
+
         try{
             klapzimnage =  findViewById(R.id.klapz)
         }catch (e: NullPointerException){
 
         }
 
-         klapznext = bottomSheetDialog.findViewById<TextView>(R.id.klapznext)!!
-         klapzlogin = bottomSheetDialog.findViewById<TextView>(R.id.klapzlogin)!!
+//         mainviwe = bottomSheetDialog.findViewById<FrameLayout>(R.id.mainviwe)!!
+//        val buttonLayoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+//        buttonLayoutParams.height = sizem.y
+//        mainviwe.setLayoutParams(buttonLayoutParams)
+
+
+//        var  param =  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,/*height*/ sizem.y, 1)
+//        mainviwe.setLayoutParams(param)
+
+        klapznext = bottomSheetDialog.findViewById<TextView>(R.id.klapznext)!!
+        klapzlogin = bottomSheetDialog.findViewById<TextView>(R.id.klapzlogin)!!
+
         try{
             klapzmain = bottomSheetDialog.findViewById<TextView>(com.klapz.mylibrary.R.id.klapz)!!
         }catch (e: NullPointerException){
@@ -128,7 +160,6 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         klapzDownloaderror = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownloaderror)!!
         ccp = bottomSheetDialog.findViewById<CountryCodePicker>(R.id.ccp)!!
         errorpopup = bottomSheetDialog.findViewById<LinearLayout>(R.id.errorpopup)!!
-
         klapzDownload2 = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownload2)!!
         klapzDownloaderror2 = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownloaderror2)!!
         errorpopup2 = bottomSheetDialog.findViewById<LinearLayout>(R.id.errorpopup2)!!
@@ -144,11 +175,63 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         prefretreffres = bottomSheetDialog.findViewById<LinearLayout>(R.id.prefretreffres)!!
         resendotp = bottomSheetDialog.findViewById<TextView>(R.id.resendotp)!!
         thanxtext = bottomSheetDialog.findViewById<TextView>(R.id.thanxtext)!!
+        klapzDownloadmain = bottomSheetDialog.findViewById<TextView>(R.id.klapzDownloadmain)!!
 
 
+        startMain = bottomSheetDialog.findViewById<LinearLayout>(R.id.startMain)!!
+        taermandcondition = bottomSheetDialog.findViewById<LinearLayout>(R.id.taermandcondition)!!
+        camcestart = bottomSheetDialog.findViewById<TextView>(R.id.camcestart)!!
+        gotologin = bottomSheetDialog.findViewById<TextView>(R.id.gotologin)!!
 //        Phoneedit.ont
 
 
+        back = bottomSheetDialog.findViewById<ImageView>(R.id.back)!!
+        back1 = bottomSheetDialog.findViewById<ImageView>(R.id.back1)!!
+        back2 = bottomSheetDialog.findViewById<ImageView>(R.id.back2)!!
+        back3 = bottomSheetDialog.findViewById<ImageView>(R.id.back3)!!
+        back4 = bottomSheetDialog.findViewById<ImageView>(R.id.back4)!!
+        back5 = bottomSheetDialog.findViewById<ImageView>(R.id.back5)!!
+
+
+        back.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+
+        back1.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+        back2.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+        back3.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+        back4.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+        back5.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+
+
+        taermandcondition.setOnClickListener {
+
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://klapz.club/terms-and-conditions"))
+            context.startActivity(browserIntent)
+
+        }
+
+        gotologin.setOnClickListener {
+            startMain.visibility = View.GONE
+            otpfinal!!.visibility = View.GONE
+            login!!.visibility = View.VISIBLE
+            thncyou.visibility =View.GONE
+            user_detail_layout!!.visibility = View.GONE
+        }
+
+        camcestart.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
 
         klapzDownload.setOnClickListener {
             val isAppInstalled = appInstalledOrNot("com.klapz.customer")
@@ -183,6 +266,25 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
             }
         }
+
+        klapzDownloadmain.setOnClickListener {
+            val isAppInstalled = appInstalledOrNot("com.klapz.customer")
+
+            if (isAppInstalled) {
+                //This intent will help you to launch if the package is already installed
+                val LaunchIntent: Intent? = context.getPackageManager()
+                        .getLaunchIntentForPackage("com.klapz.customer")
+                context.startActivity(LaunchIntent)
+            } else {
+                try {
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.klapz.customer")))
+                } catch (e: ActivityNotFoundException) {
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.klapz.customer")))
+                }
+            }
+        }
+
+
 
         if (klapznext != null) {
             klapznext.setOnClickListener {
@@ -234,11 +336,12 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         if (klapzlogin != null) {
             klapzmain!!.setOnClickListener {
                 KlapzGive()
-
             }
         }
+
         if (klapzimnage != null) {
             klapzimnage!!.setOnClickListener {
+                Log.e("size", sizem.toString())
                 ShowKlap()
             }
         }
@@ -249,6 +352,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             login!!.visibility = View.GONE
             user_detail_layout!!.visibility = View.VISIBLE
         }
+
         wp.setOnClickListener {
             Log.e("Share", shareResponse.toString())
             val whatsappIntent = Intent(Intent.ACTION_SEND)
@@ -288,11 +392,13 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             val intent = Intent(Intent.ACTION_SEND)
             val shareBody = shareResponse.getString("twitter")
             intent.type = "text/plain"
-            intent.putExtra(Intent.EXTRA_SUBJECT,shareResponse.getString("twitter"))
+            intent.putExtra(Intent.EXTRA_SUBJECT, shareResponse.getString("twitter"))
             intent.putExtra(Intent.EXTRA_TEXT, shareBody)
             context.startActivity(Intent.createChooser(intent, "Share via"))
         }
-
+        fun imageClick(view: View) {
+            //Implement image click function
+        }
     }
 
 
@@ -304,11 +410,13 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 token = pref.getString("Klapztoken", "test").toString()
                 otpfinal!!.visibility = View.GONE
                 login!!.visibility = View.GONE
+                startMain.visibility = View.GONE
                 thncyou.visibility =View.GONE
                 user_detail_layout!!.visibility = View.VISIBLE
             }else{
+                startMain.visibility = View.VISIBLE
                 otpfinal!!.visibility = View.GONE
-                login!!.visibility = View.VISIBLE
+                login!!.visibility = View.GONE
                 thncyou.visibility =View.GONE
                 user_detail_layout!!.visibility = View.GONE
             }
@@ -330,6 +438,13 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             if(DataForKlapz.has("ContentType")){
                 ContentType = DataForKlapz.getString("ContentType")
             }
+
+
+            if(DataForKlapz.has("callBackPayload")){
+                callBackPayload = DataForKlapz.getJSONObject("callBackPayload")
+            }
+
+
             klapzmain.setText("Give this ${ContentType}: " + klapcounte.text.toString() + " Klapz")
             Url = DataForKlapz.getString("Url");
             key = pref.getString("Klapzkey", "xxx").toString()
@@ -544,6 +659,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("fromWhere", "App")
         objinner.put("createrID", createrID)
         objinner.put("expression", expression.text)
+        objinner.put("callBackPayload", callBackPayload)
+
 
         obj.put("claps", objinner)
         Log.e("url", apiurl + "claps/expend?apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
@@ -563,7 +680,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                                 shareResponse = response.getJSONObject("social")
                                 if (Mode == "Direct") {
                                     Toast.makeText(context, thanxtext.text, Toast.LENGTH_LONG)
-                                                    .show()
+                                            .show()
                                 }
                             }
 
