@@ -80,8 +80,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     lateinit var taermandcondition:LinearLayout
     lateinit var camcestart:TextView
     lateinit var gotologin:TextView
-
-
+    lateinit var klapzcoutuser:TextView
+    lateinit var usercount:TextView
     lateinit var back:ImageView
     lateinit var back1:ImageView
     lateinit var back2:ImageView
@@ -176,12 +176,13 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         resendotp = bottomSheetDialog.findViewById<TextView>(R.id.resendotp)!!
         thanxtext = bottomSheetDialog.findViewById<TextView>(R.id.thanxtext)!!
         klapzDownloadmain = bottomSheetDialog.findViewById<TextView>(R.id.klapzDownloadmain)!!
-
+        usercount = bottomSheetDialog.findViewById<TextView>(R.id.usercount)!!
 
         startMain = bottomSheetDialog.findViewById<LinearLayout>(R.id.startMain)!!
         taermandcondition = bottomSheetDialog.findViewById<LinearLayout>(R.id.taermandcondition)!!
         camcestart = bottomSheetDialog.findViewById<TextView>(R.id.camcestart)!!
         gotologin = bottomSheetDialog.findViewById<TextView>(R.id.gotologin)!!
+        klapzcoutuser = bottomSheetDialog.findViewById<TextView>(R.id.usercount)!!
 //        Phoneedit.ont
 
 
@@ -505,6 +506,11 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
             }
 
+
+            if(pref.getString("Klapztoken", "test")!="test"){
+                UserDetails()
+            }
+
         }catch (e: Exception){
             Log.e("Klapz Sdk Error", e.toString())
             Toast.makeText(context, "Error in initialization klapz sdk ,Check log for more info", Toast.LENGTH_LONG)
@@ -735,6 +741,36 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                                     e2.printStackTrace()
                                 }
                             }
+                        }
+                ) {
+                    override fun getHeaders(): Map<String, String> {
+                        val headers = HashMap<String, String>()
+                        headers["auth-token"] = token
+                        return headers
+                    }
+                }
+        val requestQueue: RequestQueue = Volley.newRequestQueue(context)
+        requestQueue.add(jsObjRequest)
+    }
+
+
+    fun UserDetails(){
+        val obj = JSONObject()
+        val objinner = JSONObject()
+        Log.e("url main", apiurl + "user/profile?props=balanceClaps,totalContentsClapped,numCreatorsSupported,purchasedClaps,globalCreators")
+        val jsObjRequest =
+                object : JsonObjectRequest(
+                        Request.Method.GET,
+                        apiurl + "user/profile?props=balanceClaps,totalContentsClapped,numCreatorsSupported,purchasedClaps,globalCreators",
+                        null,
+                        Response.Listener<JSONObject?> { response ->
+                            Log.e("responce", response.toString())
+                            usercount.setText("Your balance: "+response.getJSONObject("user").getInt("balanceClaps"))
+                        },
+                        Response.ErrorListener { error ->
+                            Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
+                                    .show()
+                            Log.e("error", error.toString())
                         }
                 ) {
                     override fun getHeaders(): Map<String, String> {
