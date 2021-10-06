@@ -386,8 +386,11 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             try {
                 context.startActivity(whatsappIntent)
             } catch (ex: ActivityNotFoundException) {
-                Toast.makeText(context, "Whatsapp have not been installed.", Toast.LENGTH_LONG)
-                        .show()
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.facebook.com/sharer.php?u="+shareResponse.getString("facebook")))
+
+                context.startActivity(browserIntent)
+//                Toast.makeText(context, "FaceBook App have not been installed.", Toast.LENGTH_LONG)
+//                        .show()
             }
         }
         tw.setOnClickListener {
@@ -710,8 +713,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     fun KlapzGive(){
         if(klapz <= 0){
-            Toast.makeText(context, "Enter Valid klapz", Toast.LENGTH_LONG)
-                    .show()
+            Toast.makeText(context, "Enter Valid klapz", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -722,7 +724,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("public", true)
         objinner.put("Key", key)
         objinner.put("fromWhere", "App")
-        objinner.put("createrID", createrID)
+        objinner.put("creatorID", createrID)
         objinner.put("expression", expression.text)
         objinner.put("callBackPayload", callBackPayload)
         obj.put("claps", objinner)

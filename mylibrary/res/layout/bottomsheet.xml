@@ -175,6 +175,7 @@
                     android:textSize="24dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
+                    android:textColor="@color/black"
                     android:text="2"
                     android:background="@drawable/editstyle2"
                     android:layout_height="50dp"

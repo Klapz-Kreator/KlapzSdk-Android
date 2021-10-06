@@ -469,6 +469,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="2"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:background="@drawable/editstyle2"
                 android:layout_height="50dp"
