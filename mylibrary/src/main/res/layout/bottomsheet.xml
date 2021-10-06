@@ -53,27 +53,26 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal">
 
-            <ImageView
-                android:src="@drawable/logom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:src="@drawable/logom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="320dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/montserratbold"
-                android:textColor="@color/white"
-                android:textFontWeight="@integer/material_motion_duration_long_2"
-                android:layout_height="wrap_content"
-                android:text="Affordable Content Rewarding"
-                tools:ignore="MissingConstraints" />
+                <TextView
+                    android:layout_width="320dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserratbold"
+                    android:textColor="@color/white"
+                    android:textFontWeight="@integer/material_motion_duration_long_2"
+                    android:layout_height="wrap_content"
+                    android:text="  Klapz Club"
+                    tools:ignore="MissingConstraints" />
 
             </LinearLayout>
         </LinearLayout>
@@ -198,26 +197,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal">
-            <ImageView
-                android:src="@drawable/logom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="320dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/montserratbold"
-                android:textColor="@color/white"
-                android:textFontWeight="@integer/material_motion_duration_long_2"
-                android:layout_height="wrap_content"
-                android:text="Affordable Content Rewarding"
-                tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:src="@drawable/logom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+                <TextView
+                    android:layout_width="320dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserratbold"
+                    android:textColor="@color/white"
+                    android:textFontWeight="@integer/material_motion_duration_long_2"
+                    android:layout_height="wrap_content"
+                    android:text="  Klapz Club"
+                    tools:ignore="MissingConstraints" />
             </LinearLayout>
 
         </LinearLayout>
@@ -325,15 +323,15 @@
 
 
     <LinearLayout
-            android:id="@+id/user_detail_layout"
-            android:layout_width="match_parent"
-            android:visibility="visible"
-            android:background="@color/white"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="vertical">
+        android:id="@+id/user_detail_layout"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:gravity="center"
@@ -368,27 +366,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal">
-            <ImageView
-                android:src="@drawable/logom"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:src="@drawable/logom"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="320dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/montserratbold"
-                android:textColor="@color/klapxcolor"
-                android:textFontWeight="@integer/material_motion_duration_long_2"
-                android:layout_height="wrap_content"
-                android:text="Affordable Content Rewarding"
-                tools:ignore="MissingConstraints" />
+                <TextView
+                    android:layout_width="320dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserratbold"
+                    android:textColor="@color/klapxcolor"
+                    android:textFontWeight="@integer/material_motion_duration_long_2"
+                    android:layout_height="wrap_content"
+                    android:text="  Klapz Club"
+                    tools:ignore="MissingConstraints" />
             </LinearLayout>
 
         </LinearLayout>
@@ -422,10 +419,41 @@
             android:layout_height="100dp"
             android:layout_width="330dp"
             android:inputType="textMultiLine"/>
+        <LinearLayout
+            android:id="@+id/reffres"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
+            <ImageView
+                android:src="@drawable/logom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/montserratregular"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="X"
+                android:textColor="@color/klapxcolor"
+                android:textSize="16dp" />
             <LinearLayout
-                android:id="@+id/reffres"
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
+                android:id="@+id/prefretreffres"
+                android:layout_width="wrap_content"
                 android:gravity="center"
                 android:visibility="visible"
                 android:layout_height="wrap_content"
@@ -433,51 +461,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal">
-                <ImageView
-                    android:src="@drawable/logom"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="MissingConstraints" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/montserratregular"
-                    android:layout_marginLeft="10dp"
-                    android:gravity="center"
-                    android:text="X"
-                    android:textColor="@color/klapxcolor"
-                    android:textSize="16dp" />
-                <LinearLayout
-                    android:id="@+id/prefretreffres"
-                    android:layout_width="wrap_content"
-                    android:gravity="center"
-                    android:visibility="visible"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:orientation="horizontal">
-                </LinearLayout>
-                <EditText
-                    android:id="@+id/klapcount"
-                    android:padding="10dp"
-                    android:textSize="24dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:text="2"
-                    android:gravity="center"
-                    android:background="@drawable/editstyle2"
-                    android:layout_height="50dp"
-                    android:layout_width="50dp"
-                    android:inputType="phone"/>
             </LinearLayout>
+            <EditText
+                android:id="@+id/klapcount"
+                android:padding="10dp"
+                android:textSize="24dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="2"
+                android:gravity="center"
+                android:background="@drawable/editstyle2"
+                android:layout_height="50dp"
+                android:layout_width="50dp"
+                android:inputType="phone"/>
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkBox2"
@@ -580,7 +577,7 @@
         </LinearLayout>
 
 
-     </LinearLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/errorpopup"
@@ -604,7 +601,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:orientation="horizontal">
 
-        <ImageView
+            <ImageView
                 android:id="@+id/back3"
                 android:src="@drawable/arrow"
                 android:layout_width="25dp"
@@ -626,27 +623,26 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal">
 
-            <ImageView
-                android:src="@drawable/logom"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:src="@drawable/logom"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
-            <TextView
-                android:textAlignment="center"
-                android:layout_width="320dp"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:fontFamily="@font/montserratbold"
-                android:textColor="@color/klapxcolor"
-                android:textFontWeight="@integer/material_motion_duration_long_2"
-                android:layout_height="wrap_content"
-                android:text="Affordable Content Rewarding"
-                tools:ignore="MissingConstraints" />
+                <TextView
+                    android:layout_width="320dp"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/montserratbold"
+                    android:textColor="@color/klapxcolor"
+                    android:textFontWeight="@integer/material_motion_duration_long_2"
+                    android:layout_height="wrap_content"
+                    android:text="  Klapz Club"
+                    tools:ignore="MissingConstraints" />
             </LinearLayout>
         </LinearLayout>
         <TextView
@@ -694,7 +690,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -750,8 +746,7 @@
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserratbold"
-                    android:text="Affordable Content Rewarding"
-                    android:textAlignment="center"
+                    android:text="  Klapz Club"
                     android:textColor="@color/klapxcolor"
                     android:textFontWeight="@integer/material_motion_duration_long_2"
                     android:textSize="18dp"
@@ -777,12 +772,24 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="28dp"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="10dp"
             android:fontFamily="@font/montserratregular"
             android:text="Micro rewarding free content on the internet. "
             android:textColor="@color/pf_grey"
             android:textFontWeight="@integer/material_motion_duration_long_2"
             android:textSize="14dp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/learnmoremain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="28dp"
+            android:fontFamily="@font/montserratregular"
+            android:text="Learn more"
+            android:textColor="@color/klapxcolor"
+            android:textFontWeight="@integer/material_motion_duration_long_2"
+            android:textSize="12dp"
             android:textStyle="bold"
             tools:ignore="MissingConstraints" />
 
@@ -927,18 +934,19 @@
                 android:gravity="center"
                 android:text="Cancel"
                 android:textColor="@color/klapxcolor"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/gotologin"
-                android:layout_width="172dp"
+                android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="5dp"
                 android:background="@drawable/buttonklap"
                 android:fontFamily="@font/montserratmedium"
                 android:gravity="center"
-                android:text="Proceed"
+                android:text="I'm happy to Give"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -990,86 +998,85 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:orientation="horizontal">
-            <ImageView
-                android:src="@drawable/logom"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                <ImageView
+                    android:src="@drawable/logom"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
-            <TextView
+                <TextView
 
-                android:textAlignment="center"
-                android:layout_width="320dp"
-                android:textSize="18dp"
-                android:fontFamily="@font/montserratbold"
-                android:textStyle="bold"
-                android:textColor="@color/klapxcolor"
-                android:textFontWeight="@integer/material_motion_duration_long_2"
-                android:layout_height="wrap_content"
-                android:text="Affordable Content Rewarding"
-                tools:ignore="MissingConstraints" />
+                    android:layout_width="320dp"
+                    android:textSize="18dp"
+                    android:fontFamily="@font/montserratbold"
+                    android:textStyle="bold"
+                    android:textColor="@color/klapxcolor"
+                    android:textFontWeight="@integer/material_motion_duration_long_2"
+                    android:layout_height="wrap_content"
+                    android:text="  Klapz Club"
+                    tools:ignore="MissingConstraints" />
             </LinearLayout>
         </LinearLayout>
 
-    <TextView
-        android:id="@+id/thanxtext"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:layout_marginTop="150dp"
-        android:textSize="18dp"
-        android:fontFamily="@font/montserratbold"
-        android:textColor="@color/klapxcolor"
-        android:textFontWeight="@integer/material_motion_duration_long_1"
-        android:layout_height="wrap_content"
-        android:text="Thanks for Klapping."
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/thanxtext"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_marginTop="150dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/montserratbold"
+            android:textColor="@color/klapxcolor"
+            android:textFontWeight="@integer/material_motion_duration_long_1"
+            android:layout_height="wrap_content"
+            android:text="Thanks for Klapping."
+            tools:ignore="MissingConstraints" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:visibility="visible"
-        android:layout_marginTop="30dp"
-        android:layout_height="wrap_content"
-        android:paddingVertical="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:visibility="visible"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal">
 
-        <ImageView
-            android:layout_marginHorizontal="15dp"
-            android:id="@+id/wa"
-            android:src="@drawable/wp"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-        />
-        <ImageView
-            android:layout_marginHorizontal="15dp"
-            android:id="@+id/fb"
-            android:src="@drawable/fb"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-        />
-        <ImageView
-            android:layout_marginHorizontal="15dp"
-            android:id="@+id/tw"
-            android:src="@drawable/twiter"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-        />
-        <ImageView
-            android:layout_marginHorizontal="15dp"
-            android:id="@+id/share"
-            android:src="@drawable/share"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-        />
+            <ImageView
+                android:layout_marginHorizontal="15dp"
+                android:id="@+id/wa"
+                android:src="@drawable/wp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                />
+            <ImageView
+                android:layout_marginHorizontal="15dp"
+                android:id="@+id/fb"
+                android:src="@drawable/fb"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                />
+            <ImageView
+                android:layout_marginHorizontal="15dp"
+                android:id="@+id/tw"
+                android:src="@drawable/twiter"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                />
+            <ImageView
+                android:layout_marginHorizontal="15dp"
+                android:id="@+id/share"
+                android:src="@drawable/share"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                />
 
-    </LinearLayout>
+        </LinearLayout>
         <TextView
             android:id="@+id/klapzDownloadmain"
             android:layout_marginTop="40dp"

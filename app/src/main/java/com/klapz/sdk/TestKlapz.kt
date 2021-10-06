@@ -12,30 +12,28 @@ class TestKlapz : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_test_klapz)
 
-
-
         var  kalpz = KlapzConfig();
-
         //SendBox /Production
-        kalpz.Start("XXXXXXXX",this,"SendBox")
+        kalpz.Start("1q6mp6ku5d7a30",this,"SendBox")
+
 
         val obj = JSONObject()
         obj.put("title", "How to Win Friends and Influence People")
         obj.put("klapz", 2)
-        obj.put("createrID", "createrID")
-        obj.put("Url", "https://www.youtube.com/watch?v=LnNS_Gb4Mhk")
+        obj.put("createrID", "UClabcltb2KNmT0Rc9CbWsVw")
+        obj.put("Url", "https://www.youtube.com/watch?v=V23A9u7j_S0")
         obj.put("expressionPlaceholder", "Tell us, what do you love about this book summary")
         obj.put("PreferKlapz", "")
-
         obj.put("ThankText", "Thanks for Klapping.")
         obj.put("ContentType", "summary")
 
         //Direct //Default
         obj.put("Mode", "Default")
+        obj.put("appId", "1001")
 
-        var callBackPayload = JSONObject()
-        callBackPayload.put("userid","userID")
-        obj.put("callBackPayload", callBackPayload)
+//        var callBackPayload = JSONObject()
+//        callBackPayload.put("userid","userID")
+//        obj.put("callBackPayload", callBackPayload)
 
 
         kalpz.Config(obj,this)
