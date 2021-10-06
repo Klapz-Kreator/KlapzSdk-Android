@@ -409,6 +409,7 @@
             android:layout_marginTop="30dp"
             android:paddingVertical="5dp"
             android:layout_gravity="center"
+            android:textColor="@color/black"
             android:hint="Tell is, what do you like about it this?"
             android:background="@drawable/editstyle"
             android:gravity="top|left"
