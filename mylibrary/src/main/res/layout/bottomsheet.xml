@@ -408,8 +408,9 @@
             android:id="@+id/exprestion"
             android:layout_marginTop="30dp"
             android:paddingVertical="5dp"
-            android:layout_gravity="center"
+            android:textColorHint="@color/pf_grey_light"
             android:textColor="@color/black"
+            android:layout_gravity="center"
             android:hint="Tell is, what do you like about it this?"
             android:background="@drawable/editstyle"
             android:gravity="top|left"
@@ -486,6 +487,7 @@
             android:fontFamily="@font/montserratregular"
             android:layout_marginTop="50dp"
             android:buttonTint="@color/klapxcolor"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="Can we notify your friends about this Klap?"
             android:textSize="13sp" />
