@@ -23,7 +23,7 @@ class TestKlapz : AppCompatActivity() {
         obj.put("createrID", "UClabcltb2KNmT0Rc9CbWsVw")
         obj.put("Url", "https://www.youtube.com/watch?v=V23A9u7j_S0")
         obj.put("expressionPlaceholder", "Tell us, what do you love about this book summary")
-        obj.put("PreferKlapz", "")
+        obj.put("PreferKlapz", "10,20,30")
         obj.put("ThankText", "Thanks for Klapping.")
         obj.put("ContentType", "summary")
 

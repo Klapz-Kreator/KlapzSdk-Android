@@ -484,8 +484,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         btn[i]!!.id = i
                         btn[i]!!.text = prefferarray[i]
                         val buttonLayoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-                        buttonLayoutParams.width = 150
-                        buttonLayoutParams.height = 150
+                        buttonLayoutParams.width = 120
+                        buttonLayoutParams.height = 120
                         buttonLayoutParams.setMargins(5, 0, 5, 0)
                         btn[i]!!.setLayoutParams(buttonLayoutParams)
                         btn[i]!!.width = 25
