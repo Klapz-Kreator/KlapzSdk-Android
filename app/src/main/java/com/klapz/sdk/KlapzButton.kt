@@ -22,7 +22,6 @@ import android.view.Window
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import com.android.volley.*
 import com.android.volley.toolbox.HttpHeaderParser
 import com.android.volley.toolbox.JsonObjectRequest
@@ -103,11 +102,24 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     var shareResponse = JSONObject()
     var sizem:Point;
     var learnmoreApi = "/apps/learn-more?appId="
+    var usercountKlapz = 0
     lateinit var bottomSheetDialog: Dialog
     var callBackPayload = JSONObject("{}")
+
+    interface KlapzSucessListener {
+        // These methods are the different events and
+        // need to pass relevant arguments related to the event triggered
+        fun onKlapzSucess(KlapzObject: JSONObject?)
+    }
+
+
+    public var listener: KlapzSucessListener? = null
+
+
     init {
         orientation = HORIZONTAL
         gravity = Gravity.CENTER_VERTICAL
+        this.listener = null;
         val inflater = context
             .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var contentView   = inflater.inflate(R.layout.activity_main, this, true)
@@ -328,8 +340,15 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 try {
                     Log.e("Klapz Sdk Error", s.toString())
                     klapz = s.toString().toInt()
-                    klapzmain.setText("Give this ${ContentType}: " + klapcounte.text.toString() + " Klapz")
-                    klapzmain.invalidate()
+                    if(klapz > usercountKlapz){
+                        klapzmain.setText("Download app to buy Klapz")
+                        klapzmain.invalidate()
+                    }else{
+                        klapzmain.setText("Give " + klapcounte.text.toString() + " Klapz")
+                        klapzmain.invalidate()
+                    }
+
+
                 } catch (e: Exception) {
                     Log.e("Klapz Sdk Error", e.toString())
                     Toast.makeText(context, "Please enter Valid Klapz", Toast.LENGTH_LONG)
@@ -337,7 +356,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
                     var DataForKlapz = JSONObject(pref.getString("KlapConfig", "{}"))
                     klapz = DataForKlapz.getInt("klapz")
-                    klapzmain.setText("Give this ${ContentType}: " + DataForKlapz.getInt("klapz").toString() + " Klapz")
+                    klapzmain.setText("Give " + DataForKlapz.getInt("klapz").toString() + " Klapz")
                     klapzmain.invalidate()
                 }
             }
@@ -345,7 +364,25 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
         if (klapzlogin != null) {
             klapzmain!!.setOnClickListener {
-                KlapzGive()
+                if(klapz > usercountKlapz){
+                    val isAppInstalled = appInstalledOrNot("com.klapz.customer")
+
+                    if (isAppInstalled) {
+                        //This intent will help you to launch if the package is already installed
+                        val LaunchIntent: Intent? = context.getPackageManager()
+                                .getLaunchIntentForPackage("com.klapz.customer")
+                        context.startActivity(LaunchIntent)
+                    } else {
+                        try {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.klapz.customer")))
+                        } catch (e: ActivityNotFoundException) {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.klapz.customer")))
+                        }
+                    }
+                }else{
+                    KlapzGive()
+                }
+
             }
         }
 
@@ -386,7 +423,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             try {
                 context.startActivity(whatsappIntent)
             } catch (ex: ActivityNotFoundException) {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.facebook.com/sharer.php?u="+shareResponse.getString("facebook")))
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://m.facebook.com/sharer.php?u=" + shareResponse.getString("facebook")))
 
                 context.startActivity(browserIntent)
 //                Toast.makeText(context, "FaceBook App have not been installed.", Toast.LENGTH_LONG)
@@ -412,8 +449,12 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         fun imageClick(view: View) {
             //Implement image click function
         }
-    }
 
+
+    }
+    fun setKlapzSucessListener(listener:KlapzSucessListener) {
+        this.listener = listener;
+    }
 
     fun ShowKlap(){
         try{
@@ -460,7 +501,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 callBackPayload = DataForKlapz.getJSONObject("callBackPayload")
             }
 
-            klapzmain.setText("Give this ${ContentType}: " + klapcounte.text.toString() + " Klapz")
+            klapzmain.setText("Give " + klapcounte.text.toString() + " Klapz")
             Url = DataForKlapz.getString("Url");
             key = pref.getString("Klapzkey", "xxx").toString()
             KlapEnvirment = pref.getString("KlapEnvirment", "SendBox").toString()
@@ -497,7 +538,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         prefretreffres.addView(btn[i])
                         btn[i]!!.setOnClickListener {
                             klapcounte.setText(prefferarray[i].toString())
-                            klapzmain.setText("Give this ${ContentType}: " + prefferarray[i] + " Klapz")
+                            klapzmain.setText("Give " + prefferarray[i] + " Klapz")
                             //your desired functionality
                         }
                     }
@@ -731,7 +772,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         Log.e("url", apiurl + "claps/expend?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
         Log.e("main", obj.toString())
         Log.e("main", token)
-
+//        listener?.onKlapzSucess(obj);
 
         val jsObjRequest =
                 object : JsonObjectRequest(
@@ -748,6 +789,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                                     Toast.makeText(context, thanxtext.text, Toast.LENGTH_LONG)
                                             .show()
                                 }
+                                listener?.onKlapzSucess(obj);
                             }
 
                         },
@@ -757,10 +799,10 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                             Log.e("error responcs", error.networkResponse.toString())
                             val response = error.networkResponse
                             try {
-                            val res = String(
-                                    response?.data ?: ByteArray(0),
-                                    Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
-                            // Now you can use any deserializer to make sense of data
+                                val res = String(
+                                        response?.data ?: ByteArray(0),
+                                        Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
+                                // Now you can use any deserializer to make sense of data
                                 val obj = JSONObject(res)
                                 Log.e("error", obj.toString())
                                 if (obj.getString("errorCode") == "Z1000") {
@@ -836,7 +878,6 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                                         bottomSheetDialog.dismiss()
                                     }
 
-
                                 } catch (e1: UnsupportedEncodingException) {
                                     // Couldn't properly decode data to string
                                     e1.printStackTrace()
@@ -872,8 +913,9 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         apiurl + "user/profile?props=balanceClaps",
                         null,
                         Response.Listener<JSONObject?> { response ->
-                            Log.e("responce", response.toString())
-                            usercount.setText("Your balance: "+response.getJSONObject("user").getInt("balanceClaps"))
+                            Log.e("responce user", response.toString())
+                            usercountKlapz = response.getJSONObject("user").getInt("balanceClaps")
+                            usercount.setText("Your Klapz balance: " + response.getJSONObject("user").getInt("balanceClaps"))
                         },
                         Response.ErrorListener { error ->
                             Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)

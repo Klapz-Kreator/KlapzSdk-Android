@@ -325,7 +325,7 @@
     <LinearLayout
         android:id="@+id/user_detail_layout"
         android:layout_width="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:background="@color/white"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -478,38 +478,13 @@
                 android:layout_width="50dp"
                 android:inputType="phone"/>
         </LinearLayout>
-
-        <CheckBox
-            android:id="@+id/checkBox2"
-            android:layout_width="330dp"
-            android:checked="true"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserratregular"
-            android:layout_marginTop="50dp"
-            android:buttonTint="@color/klapxcolor"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content"
-            android:text="Can we notify your friends about this Klap?"
-            android:textSize="13sp" />
-
-        <TextView
-            android:id="@+id/klapz"
-            android:layout_width="330dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:background="@drawable/buttonklap"
-            android:fontFamily="@font/montserratbold"
-            android:gravity="center"
-            android:text="Give: 2 Klapz"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:gravity="center"
             android:visibility="visible"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:paddingVertical="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -525,7 +500,7 @@
                 android:layout_marginTop="0dp"
                 android:fontFamily="@font/montserratbold"
                 android:gravity="center"
-                android:text="Your balance: 0"
+                android:text="Your Klapz balance: 0"
                 android:textColor="@color/klapxcolor"
                 android:textSize="16sp" />
 
@@ -540,6 +515,31 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
+        <CheckBox
+            android:id="@+id/checkBox2"
+            android:layout_width="330dp"
+            android:checked="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserratregular"
+            android:buttonTint="@color/klapxcolor"
+            android:textColor="@color/black"
+            android:layout_height="30dp"
+            android:text="Can we notify your friends about this Klap?"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/klapz"
+            android:layout_width="330dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/buttonklap"
+            android:fontFamily="@font/montserratbold"
+            android:gravity="center"
+            android:text="Give: 2 Klapz"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
 
 
         <LinearLayout
@@ -694,7 +694,7 @@
         android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
