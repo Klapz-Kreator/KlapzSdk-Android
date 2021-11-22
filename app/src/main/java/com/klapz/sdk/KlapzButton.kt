@@ -106,6 +106,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     var sizem:Point;
     var learnmoreApi = "/apps/learn-more?appId="
     var usercountKlapz = 0
+    var contentId = ""
     lateinit var bottomSheetDialog: Dialog
     var callBackPayload = JSONObject("{}")
 
@@ -496,6 +497,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             klapz = DataForKlapz.getInt("klapz");
             klapcounte.setText(DataForKlapz.getInt("klapz").toString())
             createrID = DataForKlapz.getString("createrID");
+            contentId = DataForKlapz.getString("contentId");
 
             if( DataForKlapz.has("ThankText")){
                 thanxtext.setText(DataForKlapz.getString("ThankText").toString())
@@ -515,7 +517,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             klapzmain.setText("Give " + klapcounte.text.toString() + " Klapz")
             Url = DataForKlapz.getString("Url");
             key = pref.getString("Klapzkey", "xxx").toString()
-            KlapEnvirment = pref.getString("KlapEnvirment", "SendBox").toString()
+            KlapEnvirment = pref.getString("KlapEnvirment", "SandBox").toString()
 
             if( DataForKlapz.has("expressionPlaceholder")){
                 expression.setHint(DataForKlapz.getString("expressionPlaceholder").toString())
@@ -670,10 +672,12 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                             editor.putString("Klapztoken", token);
                             editor.apply()
                             editor.commit()
+                            UserDetails()
                             if (Mode == "Direct") {
                                 KlapzGive()
                                 bottomSheetDialog.dismiss()
                             } else {
+
                                 otpfinal!!.visibility = View.GONE
                                 if(response.has("offer")){
                                     getnewklapz!!.visibility = View.VISIBLE
@@ -829,6 +833,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("creatorID", createrID)
         objinner.put("expression", expression.text)
         objinner.put("callBackPayload", callBackPayload)
+        objinner.put("contentId",contentId)
         obj.put("claps", objinner)
         Log.e("url", apiurl + "claps/expend?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
         Log.e("main object", obj.toString())

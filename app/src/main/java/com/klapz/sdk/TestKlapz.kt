@@ -17,7 +17,7 @@ class TestKlapz : AppCompatActivity() {
 
         var  kalpz = KlapzConfig();
         //SendBox /Production
-        kalpz.Start("1q6mp6ku5d7a30", this, "SendBox")
+        kalpz.Start("kuaduekwamk1ah", this, "SandBox")
 
 
         val obj = JSONObject()
@@ -32,7 +32,7 @@ class TestKlapz : AppCompatActivity() {
         //Direct //Default
         obj.put("Mode", "Default")
         obj.put("appId", "1001")
-
+        obj.put("contentId","contentId")
 //        var callBackPayload = JSONObject()
 //        callBackPayload.put("userid","userID")
 //        obj.put("callBackPayload", callBackPayload)
@@ -52,7 +52,7 @@ class TestKlapz : AppCompatActivity() {
 //        klapzButton.ShowKlap()
 
         // If user Logout use this funtion
-         kalpz.Close(this)
+//         kalpz.Close(this)
 
     }
 }
