@@ -21,10 +21,10 @@ class TestKlapz : AppCompatActivity() {
 
 
         val obj = JSONObject()
-        obj.put("title", "How to Win Friends and Influence People")
+        obj.put("title", "Summary Title")
         obj.put("klapz", 2)
-        obj.put("createrID", "UClabcltb2KNmT0Rc9CbWsVw")
-        obj.put("Url", "https://www.youtube.com/watch?v=V23A9u7j_S0")
+        obj.put("createrID", "Your creator id")
+        obj.put("Url", "")
         obj.put("PreferKlapz", "10,20,30")
         obj.put("ThankText", "Thanks for Klapping.")
         obj.put("ContentType", "summary")
@@ -40,8 +40,6 @@ class TestKlapz : AppCompatActivity() {
 
         kalpz.Config(obj, this)
 
-
-
 //        var klapzButton = KlapzButton(this)
 
         klapzbutton.setKlapzSucessListener(object : KlapzButton.KlapzSucessListener {
@@ -54,7 +52,7 @@ class TestKlapz : AppCompatActivity() {
 //        klapzButton.ShowKlap()
 
         // If user Logout use this funtion
-//         kalpz.Close(this)
+         kalpz.Close(this)
 
     }
 }

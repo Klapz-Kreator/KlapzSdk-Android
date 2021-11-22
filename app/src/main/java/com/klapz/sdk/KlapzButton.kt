@@ -88,6 +88,9 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     lateinit var back4:ImageView
     lateinit var back5:ImageView
     lateinit var learnmore:TextView
+    lateinit var getnewklapz:LinearLayout
+    lateinit var continre5klapz:TextView
+
     var token = ""
     var title = ""
     var klapz = 0;
@@ -198,6 +201,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         camcestart = bottomSheetDialog.findViewById<TextView>(R.id.camcestart)!!
         gotologin = bottomSheetDialog.findViewById<TextView>(R.id.gotologin)!!
         klapzcoutuser = bottomSheetDialog.findViewById<TextView>(R.id.usercount)!!
+        getnewklapz = bottomSheetDialog.findViewById<LinearLayout>(R.id.getnewklapz)!!
+        continre5klapz = bottomSheetDialog.findViewById<TextView>(R.id.continre5klapz)!!
 //        Phoneedit.ont
 
 
@@ -450,6 +455,10 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             //Implement image click function
         }
 
+        continre5klapz.setOnClickListener {
+            getnewklapz!!.visibility =View.GONE
+            user_detail_layout!!.visibility = View.VISIBLE
+        }
 
     }
     fun setKlapzSucessListener(listener:KlapzSucessListener) {
@@ -464,12 +473,14 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 token = pref.getString("Klapztoken", "test").toString()
                 otpfinal!!.visibility = View.GONE
                 login!!.visibility = View.GONE
+                getnewklapz!!.visibility =View.GONE
                 startMain.visibility = View.GONE
                 thncyou.visibility =View.GONE
                 user_detail_layout!!.visibility = View.VISIBLE
             }else{
                 startMain.visibility = View.VISIBLE
                 otpfinal!!.visibility = View.GONE
+                getnewklapz!!.visibility =View.GONE
                 login!!.visibility = View.GONE
                 thncyou.visibility =View.GONE
                 user_detail_layout!!.visibility = View.GONE
@@ -664,16 +675,43 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                                 bottomSheetDialog.dismiss()
                             } else {
                                 otpfinal!!.visibility = View.GONE
-                                user_detail_layout!!.visibility = View.VISIBLE
+                                if(response.has("offer")){
+                                    getnewklapz!!.visibility = View.VISIBLE
+                                }else{
+                                    user_detail_layout!!.visibility = View.VISIBLE
+                                }
+
                             }
 
                         }
 
                     },
                     Response.ErrorListener { error ->
-                        Toast.makeText(context, "Error in Verify Mobile otp", Toast.LENGTH_LONG)
+                        Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
                                 .show()
-                        Log.e("error", error.toString())
+                        Log.e("error responcs", error.networkResponse.toString())
+                        val response = error.networkResponse
+                        try {
+                            val res = String(
+                                    response?.data ?: ByteArray(0),
+                                    Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
+                            // Now you can use any deserializer to make sense of data
+                            val obj = JSONObject(res)
+                            Log.e("error", obj.toString())
+                            Log.e("error", error.toString())
+                        } catch (e1: UnsupportedEncodingException) {
+                            // Couldn't properly decode data to string
+                            e1.printStackTrace()
+                        } catch (e2: JSONException) {
+                            // returned data is not JSONObject?
+                            var kalpzc = KlapzConfig();
+                            kalpzc.Close(context)
+                            ShowKlap()
+                            e2.printStackTrace()
+                        } catch (e2: java.lang.Exception) {
+                            // returned data is not JSONObject?
+                            e2.printStackTrace()
+                        }
                     }
             ) {
                 override fun getHeaders(): Map<String, String> {
@@ -739,7 +777,29 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         Response.ErrorListener { error ->
                             Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
                                     .show()
-                            Log.e("error", error.toString())
+                            Log.e("error responcs", error.networkResponse.toString())
+                            val response = error.networkResponse
+                            try {
+                                val res = String(
+                                        response?.data ?: ByteArray(0),
+                                        Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
+                                // Now you can use any deserializer to make sense of data
+                                val obj = JSONObject(res)
+                                Log.e("error", obj.toString())
+                                Log.e("error", error.toString())
+                            } catch (e1: UnsupportedEncodingException) {
+                                // Couldn't properly decode data to string
+                                e1.printStackTrace()
+                            } catch (e2: JSONException) {
+                                // returned data is not JSONObject?
+                                var kalpzc = KlapzConfig();
+                                kalpzc.Close(context)
+                                ShowKlap()
+                                e2.printStackTrace()
+                            } catch (e2: java.lang.Exception) {
+                                // returned data is not JSONObject?
+                                e2.printStackTrace()
+                            }
                         }
                 ) {
 
@@ -761,6 +821,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         val obj = JSONObject()
         val objinner = JSONObject()
         objinner.put("count", klapz)
+        objinner.put("title", title)
         objinner.put("contentURL", Url)
         objinner.put("public", true)
         objinner.put("Key", key)
@@ -770,7 +831,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("callBackPayload", callBackPayload)
         obj.put("claps", objinner)
         Log.e("url", apiurl + "claps/expend?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
-        Log.e("main", obj.toString())
+        Log.e("main object", obj.toString())
         Log.e("main", token)
 //        listener?.onKlapzSucess(obj);
 
