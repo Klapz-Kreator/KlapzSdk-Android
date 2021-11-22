@@ -825,7 +825,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("contentURL", Url)
         objinner.put("public", true)
         objinner.put("Key", key)
-        objinner.put("fromWhere", "App")
+        objinner.put("fromWhere", "externalApp")
         objinner.put("creatorID", createrID)
         objinner.put("expression", expression.text)
         objinner.put("callBackPayload", callBackPayload)
