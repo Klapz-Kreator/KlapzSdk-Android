@@ -107,6 +107,12 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     var learnmoreApi = "/apps/learn-more?appId="
     var usercountKlapz = 0
     var contentId = ""
+
+    var description = ""
+    var tags = ""
+    var creatorName = ""
+    var creatorScreenName = ""
+
     lateinit var bottomSheetDialog: Dialog
     var callBackPayload = JSONObject("{}")
 
@@ -497,7 +503,18 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             klapz = DataForKlapz.getInt("klapz");
             klapcounte.setText(DataForKlapz.getInt("klapz").toString())
             createrID = DataForKlapz.getString("createrID");
-            contentId = DataForKlapz.getString("contentId");
+
+            if( DataForKlapz.has("contentId")){
+                contentId = DataForKlapz.getString("contentId");
+            }
+
+            description = DataForKlapz.getString("description")
+            creatorName = DataForKlapz.getString("creatorName")
+            creatorScreenName = DataForKlapz.getString("creatorScreenName")
+
+            if( DataForKlapz.has("tags")){
+                tags = DataForKlapz.getString("tags");
+            }
 
             if( DataForKlapz.has("ThankText")){
                 thanxtext.setText(DataForKlapz.getString("ThankText").toString())
@@ -834,6 +851,12 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("expression", expression.text)
         objinner.put("callBackPayload", callBackPayload)
         objinner.put("contentId",contentId)
+
+        objinner.put("description",description)
+        objinner.put("creatorName",creatorName)
+        objinner.put("creatorScreenName",creatorScreenName)
+        objinner.put("tags",tags)
+
         obj.put("claps", objinner)
         Log.e("url", apiurl + "claps/expend?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
         Log.e("main object", obj.toString())

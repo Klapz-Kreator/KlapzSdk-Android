@@ -33,6 +33,14 @@ class TestKlapz : AppCompatActivity() {
         obj.put("Mode", "Default")
         obj.put("appId", "1001")
         obj.put("contentId","contentId")
+        obj.put("contentId","contentId")
+
+        obj.put("description","description")
+        obj.put("creatorName","creatorName")
+        obj.put("creatorScreenName","creatorScreenName")
+
+        obj.put("tags","tags")
+
 //        var callBackPayload = JSONObject()
 //        callBackPayload.put("userid","userID")
 //        obj.put("callBackPayload", callBackPayload)

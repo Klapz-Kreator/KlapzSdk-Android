@@ -321,17 +321,17 @@
             android:textSize="18sp" />
     </LinearLayout>
 
-
     <LinearLayout
         android:id="@+id/user_detail_layout"
         android:layout_width="match_parent"
-        android:visibility="gone"
+        android:visibility="visible"
         android:background="@color/white"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:gravity="center"
@@ -409,7 +409,7 @@
             android:layout_marginTop="30dp"
             android:paddingVertical="5dp"
             android:textColorHint="@color/pf_grey_light"
-            android:textColor="@color/black"
+            android:textColor="@color/blacktextKlapz"
             android:layout_gravity="center"
             android:hint="Tell is, what do you like about it this?"
             android:background="@drawable/editstyle"
@@ -471,7 +471,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:text="2"
-                android:textColor="@color/black"
+                android:textColor="@color/blacktextKlapz"
                 android:gravity="center"
                 android:background="@drawable/editstyle2"
                 android:layout_height="50dp"
@@ -522,7 +522,7 @@
             android:layout_gravity="center"
             android:fontFamily="@font/montserratregular"
             android:buttonTint="@color/klapxcolor"
-            android:textColor="@color/black"
+            android:textColor="@color/blacktextKlapz"
             android:layout_height="30dp"
             android:text="Can we notify your friends about this Klap?"
             android:textSize="13sp" />
@@ -826,7 +826,7 @@
                 android:fontFamily="@font/montserratregular"
                 android:lineHeight="20dp"
                 android:text="Give as little as ₹2 when you like a content."
-                android:textColor="@color/black"
+                android:textColor="@color/blacktextKlapz"
                 android:textFontWeight="@integer/material_motion_duration_long_2"
                 android:textSize="14dp"
                 android:textStyle="bold"
@@ -861,7 +861,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
                 android:text="Get notified when your friends Klap."
-                android:textColor="@color/black"
+                android:textColor="@color/blacktextKlapz"
                 android:textFontWeight="@integer/material_motion_duration_long_2"
                 android:textSize="14dp"
                 android:textStyle="bold"
@@ -886,7 +886,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
                 android:text="* "
-                android:textColor="@color/black"
+                android:textColor="@color/blacktextKlapz"
                 android:textFontWeight="@integer/material_motion_duration_long_2"
                 android:textSize="12dp"
                 android:textStyle="bold"
@@ -908,7 +908,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/montserratregular"
                 android:text=" apply "
-                android:textColor="@color/black"
+                android:textColor="@color/blacktextKlapz"
                 android:textFontWeight="@integer/material_motion_duration_long_2"
                 android:textSize="12dp"
                 android:textStyle="bold"
@@ -1169,7 +1169,7 @@
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:fontFamily="@font/montserratbold"
-            android:textColor="@color/black"
+            android:textColor="@color/blacktextKlapz"
             android:layout_height="wrap_content"
             android:text="Congratulations"
             tools:ignore="MissingConstraints" />
