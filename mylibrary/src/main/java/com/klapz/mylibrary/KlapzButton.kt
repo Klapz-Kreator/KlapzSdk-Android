@@ -497,20 +497,31 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             errorotp.setText("")
             errorphone.setText("")
             var DataForKlapz = JSONObject(pref.getString("KlapConfig", "{}"))
-            title = DataForKlapz.getString("title")
+            if( DataForKlapz.has("title")){
+                title = DataForKlapz.getString("title");
+            }
             titlemain.setText(title)
             titlecontect.setText(title)
             klapz = DataForKlapz.getInt("klapz");
             klapcounte.setText(DataForKlapz.getInt("klapz").toString())
-            creatorId = DataForKlapz.getString("creatorId");
 
             if( DataForKlapz.has("contentId")){
                 contentId = DataForKlapz.getString("contentId");
             }
 
-            description = DataForKlapz.getString("description")
-            creatorName = DataForKlapz.getString("creatorName")
-            creatorScreenName = DataForKlapz.getString("creatorScreenName")
+            if( DataForKlapz.has("creatorId")){
+                creatorId = DataForKlapz.getString("creatorId");
+            }
+
+            if( DataForKlapz.has("description")){
+                description = DataForKlapz.getString("description");
+            }
+            if( DataForKlapz.has("creatorName")){
+                creatorName = DataForKlapz.getString("creatorName");
+            }
+            if( DataForKlapz.has("creatorScreenName")){
+                creatorScreenName = DataForKlapz.getString("creatorScreenName");
+            }
 
             if( DataForKlapz.has("tags")){
                 tags = DataForKlapz.getString("tags");
@@ -532,7 +543,11 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             }
 
             klapzmain.setText("Give " + klapcounte.text.toString() + " Klapz")
-            Url = DataForKlapz.getString("Url");
+
+            if(DataForKlapz.has("Url")){
+                Url = DataForKlapz.getString("Url")
+            }
+
             key = pref.getString("Klapzkey", "xxx").toString()
             KlapEnvirment = pref.getString("KlapEnvirment", "SandBox").toString()
 
@@ -843,20 +858,24 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         val objinner = JSONObject()
         objinner.put("count", klapz)
         objinner.put("title", title)
-        objinner.put("contentURL", Url)
         objinner.put("public", true)
         objinner.put("Key", key)
         objinner.put("fromWhere", "externalApp")
-        objinner.put("creatorId", creatorId)
         objinner.put("expression", expression.text)
         objinner.put("callBackPayload", callBackPayload)
-        objinner.put("contentId",contentId)
 
-        objinner.put("description",description)
-        objinner.put("creatorName",creatorName)
-        objinner.put("creatorScreenName",creatorScreenName)
-        objinner.put("tags",tags)
-        objinner.put("contentType",ContentType)
+        if(Url == ""){
+            objinner.put("description",description)
+            objinner.put("contentId",contentId)
+            objinner.put("creatorId", creatorId)
+            objinner.put("creatorName",creatorName)
+            objinner.put("creatorScreenName",creatorScreenName)
+            objinner.put("tags",tags)
+            objinner.put("contentType",ContentType)
+        }else{
+            objinner.put("contentURL", Url)
+        }
+
 
         obj.put("claps", objinner)
         Log.e("url", apiurl + "claps/expend?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
