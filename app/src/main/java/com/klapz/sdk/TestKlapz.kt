@@ -23,7 +23,7 @@ class TestKlapz : AppCompatActivity() {
         val obj = JSONObject()
         obj.put("title", "Summary Title")
         obj.put("klapz", 2)
-        obj.put("createrID", "Your creator id")
+        obj.put("creatorId", "Your creator id")
         obj.put("Url", "")
         obj.put("PreferKlapz", "10,20,30")
         obj.put("ThankText", "Thanks for Klapping.")
@@ -32,7 +32,6 @@ class TestKlapz : AppCompatActivity() {
         //Direct //Default
         obj.put("Mode", "Default")
         obj.put("appId", "1001")
-        obj.put("contentId","contentId")
         obj.put("contentId","contentId")
 
         obj.put("description","description")

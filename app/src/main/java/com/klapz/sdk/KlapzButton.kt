@@ -94,7 +94,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     var token = ""
     var title = ""
     var klapz = 0;
-    var createrID = "";
+    var creatorId = "";
     var Url = "";
     var KlapEnvirment = ""
     var key = ""
@@ -502,7 +502,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             titlecontect.setText(title)
             klapz = DataForKlapz.getInt("klapz");
             klapcounte.setText(DataForKlapz.getInt("klapz").toString())
-            createrID = DataForKlapz.getString("createrID");
+            creatorId = DataForKlapz.getString("creatorId");
 
             if( DataForKlapz.has("contentId")){
                 contentId = DataForKlapz.getString("contentId");
@@ -847,7 +847,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("public", true)
         objinner.put("Key", key)
         objinner.put("fromWhere", "externalApp")
-        objinner.put("creatorID", createrID)
+        objinner.put("creatorId", creatorId)
         objinner.put("expression", expression.text)
         objinner.put("callBackPayload", callBackPayload)
         objinner.put("contentId",contentId)
@@ -856,6 +856,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         objinner.put("creatorName",creatorName)
         objinner.put("creatorScreenName",creatorScreenName)
         objinner.put("tags",tags)
+        objinner.put("contentType",ContentType)
 
         obj.put("claps", objinner)
         Log.e("url", apiurl + "claps/expend?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
