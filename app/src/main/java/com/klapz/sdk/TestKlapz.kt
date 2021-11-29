@@ -30,18 +30,16 @@ class TestKlapz : AppCompatActivity() {
         obj.put("expressionPlaceholder", "Tell us, what do you love about this book summary")
         obj.put("PreferKlapz", "10,20,30")
         obj.put("ThankText", "Thanks for Klapping.")
-
-
-        obj.put("Url", "https://www.youtube.com/watch?v=_ZLSSv0Excg")
+        obj.put("Url", "")
         // OR
-        obj.put("title", "Klapz this content")
+        obj.put("title", "Klapz this content new")
         obj.put("description", "description")
         obj.put("tags", "")
-        obj.put("ContentType", "booklet") // as is
-        obj.put("contentId", "contentId") // Chapter Id
-        obj.put("creatorId", "createrId") // Value is always "1"
-        obj.put("creatorName", "creatorName") // Amruth Deshmukh
-        obj.put("creatorScreenName", "creatorScreenName") // Amruth Deshmukh
+        obj.put("ContentType", "booklet") // as it is
+        obj.put("contentId", "ritesh124") // Chapter Id
+        obj.put("creatorId", "1") // Value is always "1"
+        obj.put("creatorName", "Amruth Deshmukh") // Amruth Deshmukh
+        obj.put("creatorScreenName", "Amruth Deshmukh") // Amruth Deshmukh
 
 
 //        var callBackPayload = JSONObject()
@@ -56,7 +54,7 @@ class TestKlapz : AppCompatActivity() {
         klapzbutton.setKlapzSucessListener(object : KlapzButton.KlapzSucessListener {
             override fun onKlapzSucess(KlapzObject: JSONObject?) {
                 Log.e("Log kalpz", KlapzObject.toString())
-                response.text = KlapzObject.toString()
+//                response.text = KlapzObject.toString()
             }
         })
 

@@ -656,9 +656,45 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
                     },
                     Response.ErrorListener { error ->
-                        Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
-                                .show()
+
                         Log.e("error", error.toString())
+
+                        Log.e("error responcs", error.networkResponse.toString())
+                        val response = error.networkResponse
+                        try {
+                            val res = String(
+                                    response?.data ?: ByteArray(0),
+                                    Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
+                            // Now you can use any deserializer to make sense of data
+                            val obj = JSONObject(res)
+                            Log.e("error object", obj.toString())
+                            if(obj.has("errors")){
+//                                Toast.makeText(context, obj.getJSONObject("errors").getString("message"), Toast.LENGTH_LONG)
+//                                        .show()
+                                errorphone.setText("Please enter a valid mobile number")
+                            }else{
+                                errorphone.setText("Please enter a valid mobile number")
+                            }
+                            Log.e("error", error.toString())
+                        } catch (e1: UnsupportedEncodingException) {
+                            Toast.makeText(context, "Something went wrong.", Toast.LENGTH_LONG)
+                                    .show()
+                            // Couldn't properly decode data to string
+                            e1.printStackTrace()
+                        } catch (e2: JSONException) {
+                            Toast.makeText(context, "Something went wrong.", Toast.LENGTH_LONG)
+                                    .show()
+                            // returned data is not JSONObject?
+                            var kalpzc = KlapzConfig();
+                            kalpzc.Close(context)
+                            ShowKlap()
+                            e2.printStackTrace()
+                        } catch (e2: java.lang.Exception) {
+                            Toast.makeText(context, "Something went wrong.", Toast.LENGTH_LONG)
+                                    .show()
+                            // returned data is not JSONObject?
+                            e2.printStackTrace()
+                        }
                     }
             ) {
 
