@@ -759,8 +759,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
                         },
                         Response.ErrorListener { error ->
-                            Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
-                                    .show()
+//                            Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
+//                                    .show()
                             Log.e("error responcs", error.networkResponse.toString())
                             val response = error.networkResponse
                             try {
@@ -769,6 +769,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                                         Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))
                                 // Now you can use any deserializer to make sense of data
                                 val obj = JSONObject(res)
+                                errorotp.setText("Please enter a valid Code.")
                                 Log.e("error", obj.toString())
                                 Log.e("error", error.toString())
                             } catch (e1: UnsupportedEncodingException) {
@@ -796,6 +797,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         try{
                             token = response?.headers?.get("auth-token").toString()
                             Log.e("token", token)
+
                             val jsonString = String(
                                     response?.data ?: ByteArray(0),
                                     Charset.forName(HttpHeaderParser.parseCharset(response?.headers)))

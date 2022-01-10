@@ -17,7 +17,7 @@ class TestKlapz : AppCompatActivity() {
 
         var  kalpz = KlapzConfig();
         //SendBox /Production
-        kalpz.Start("kuaduekwamk1ah", this, "SandBox")
+        kalpz.Start("8r0qn8tky8j3we8", this, "Production")
 
 
         val obj = JSONObject()
@@ -32,11 +32,11 @@ class TestKlapz : AppCompatActivity() {
         obj.put("ThankText", "Thanks for Klapping.")
         obj.put("Url", "")
         // OR
-        obj.put("title", "Klapz this content new")
+        obj.put("title", "Klapz this content ritesh")
         obj.put("description", "description")
         obj.put("tags", "")
         obj.put("ContentType", "booklet") // as it is
-        obj.put("contentId", "ritesh124") // Chapter Id
+        obj.put("contentId", "ritesh_light") // Chapter Id
         obj.put("creatorId", "1") // Value is always "1"
         obj.put("creatorName", "Amruth Deshmukh") // Amruth Deshmukh
         obj.put("creatorScreenName", "Amruth Deshmukh") // Amruth Deshmukh
@@ -54,7 +54,7 @@ class TestKlapz : AppCompatActivity() {
         klapzbutton.setKlapzSucessListener(object : KlapzButton.KlapzSucessListener {
             override fun onKlapzSucess(KlapzObject: JSONObject?) {
                 Log.e("Log kalpz", KlapzObject.toString())
-//                response.text = KlapzObject.toString()
+                response.text = KlapzObject.toString()
             }
         })
 
