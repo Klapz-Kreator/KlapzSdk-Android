@@ -2,6 +2,7 @@ package com.klapz.mylibrary
 
 import android.app.Activity
 import android.app.Dialog
+import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -90,7 +91,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
     lateinit var learnmore:TextView
     lateinit var getnewklapz:LinearLayout
     lateinit var continre5klapz:TextView
-
+    val dialog :ProgressDialog
     var token = ""
     var title = ""
     var klapz = 0;
@@ -187,7 +188,13 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         klapzDownloaderror2 = bottomSheetDialog.findViewById<EditText>(R.id.klapzDownloaderror2)!!
         errorpopup2 = bottomSheetDialog.findViewById<LinearLayout>(R.id.errorpopup2)!!
         learnmore = bottomSheetDialog.findViewById<TextView>(R.id.learnmoremain)!!
+        dialog = ProgressDialog(context) // this = YourActivity
 
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER)
+        dialog.setTitle("Loading")
+        dialog.setMessage("Loading. Please wait...")
+        dialog.isIndeterminate = true
+        dialog.setCanceledOnTouchOutside(false)
 
         wp = bottomSheetDialog.findViewById<ImageView>(R.id.wa)!!
         fb = bottomSheetDialog.findViewById<ImageView>(R.id.fb)!!
@@ -570,9 +577,9 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         btn[i]!!.id = i
                         btn[i]!!.text = prefferarray[i]
                         val buttonLayoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-                        buttonLayoutParams.width = 120
-                        buttonLayoutParams.height = 120
-                        buttonLayoutParams.setMargins(5, 0, 5, 0)
+                        buttonLayoutParams.width = 140
+                        buttonLayoutParams.height = 140
+                        buttonLayoutParams.setMargins(7, 0, 7, 0)
                         btn[i]!!.setLayoutParams(buttonLayoutParams)
                         btn[i]!!.width = 25
                         btn[i]!!.elevation = 0F
@@ -642,6 +649,8 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
         obj.put("user", objinner)
         Log.e("login", obj.toString())
         Log.e("url", apiurl + "auth/request_mobile_otp?apiKey=" + key + "&apiFrom=" + Urls.apiFrom + "&sdkNumber=" + Urls.sdkNumber + "&buildNumber=" + Urls.buildNumber)
+        dialog.show()
+
         val jsObjRequest =
                 object : JsonObjectRequest(
                         Request.Method.POST,
@@ -649,6 +658,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         obj,
                         Response.Listener<JSONObject?> { response ->
                             Log.e("responce", response.toString())
+                            dialog.dismiss()
                             if (response != null) {
                                 login!!.visibility = View.GONE
                                 otpfinal!!.visibility = View.VISIBLE
@@ -656,7 +666,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
                         },
                         Response.ErrorListener { error ->
-
+                            dialog.dismiss()
                             Log.e("error", error.toString())
 
                             Log.e("error responcs", error.networkResponse.toString())
@@ -714,7 +724,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             errorotp.setText("Please enter a valid Code.")
             return
         }
-
+        dialog.show()
         val obj = JSONObject()
         val objinner = JSONObject()
         var stringphone = "+"+ccp.selectedCountryCode+Phoneedit.text.toString()
@@ -734,6 +744,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         obj,
                         Response.Listener<JSONObject?> { response ->
                             Log.e("responce", response.toString())
+                            dialog.dismiss()
                             if (response != null) {
                                 val pref = context.getSharedPreferences("MyPref", 0)
                                 val editor: SharedPreferences.Editor = pref.edit()
@@ -761,6 +772,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         Response.ErrorListener { error ->
 //                            Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
 //                                    .show()
+                            dialog.dismiss()
                             Log.e("error responcs", error.networkResponse.toString())
                             val response = error.networkResponse
                             try {
@@ -891,7 +903,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
             Toast.makeText(context, "Enter Valid klapz", Toast.LENGTH_LONG).show()
             return
         }
-
+        dialog.show()
         val obj = JSONObject()
         val objinner = JSONObject()
         objinner.put("count", klapz)
@@ -928,6 +940,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
                         obj,
                         Response.Listener<JSONObject?> { response ->
                             Log.e("responce main", response.toString())
+                            dialog.dismiss()
                             if (response != null) {
                                 user_detail_layout!!.visibility = View.GONE
                                 thncyou!!.visibility = View.VISIBLE
@@ -941,6 +954,7 @@ class KlapzButton @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
                         },
                         Response.ErrorListener { error ->
+                            dialog.dismiss()
 //                            Toast.makeText(context, "Error in request", Toast.LENGTH_LONG)
 //                                    .show()
                             Log.e("error responcs", error.networkResponse.toString())

@@ -17,7 +17,7 @@ class TestKlapz : AppCompatActivity() {
 
         var  kalpz = KlapzConfig();
         //SendBox /Production
-        kalpz.Start("8r0qn8tky8j3we8", this, "Production")
+        kalpz.Start("kuaduekwamk1ah", this, "Sendbox")
 
 
         val obj = JSONObject()
@@ -62,7 +62,7 @@ class TestKlapz : AppCompatActivity() {
 
         // If user Logout use this funtion
 //         kalpz.Close(this)
-
+//
     }
 }
 
